@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 6 - CSS Keyframe Animations</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Flexbox wrapper centering animations both vertically and horizontally */
+    .viewport-center {
+      min-height: 65vh;
+      display: flex;
+      justify-content: center; /* Horizontal centering */
+      align-items: center;     /* Vertical centering */
+      gap: 30px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+    }
+
+    /* Card holding each animated element */
+    .animation-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      width: 280px;
+      height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .animation-card h2 {
+      font-size: 17px;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .stage {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .anim-details {
+      font-size: 11px;
+      font-family: Consolas, monospace;
+      color: #475569;
+      background-color: #f1f5f9;
+      padding: 8px 10px;
+      border-radius: 6px;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    /* ====================================================
+       1. BOUNCING BALL ANIMATION
+       Properties: animation-direction: alternate, ease-in-out
+       ==================================================== */
+    @keyframes bounceBall {
+      0% {
+        transform: translateY(-60px);
+      }
+      100% {
+        transform: translateY(20px);
+      }
+    }
+
+    .ball {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #60a5fa, #1d4ed8);
+      box-shadow: 0 10px 15px rgba(29, 78, 216, 0.3);
+      animation-name: bounceBall;
+      animation-duration: 0.8s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate; /* Bounces back and forth smoothly */
+    }
+
+    /* ====================================================
+       2. MOVING & ROTATING BOX ANIMATION
+       Properties: animation-delay: 0.4s, animation-direction: alternate
+       ==================================================== */
+    @keyframes slideAndRotate {
+      0% {
+        transform: translateX(-40px) rotate(0deg);
+        background-color: #f59e0b;
+      }
+      100% {
+        transform: translateX(40px) rotate(180deg);
+        background-color: #ec4899;
+      }
+    }
+
+    .moving-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      animation-name: slideAndRotate;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      animation-delay: 0.4s; /* Starts after small delay */
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    /* ====================================================
+       3. COLOR-CHANGING TEXT ANIMATION
+       Properties: animation-iteration-count: infinite, animation-delay: 0.8s
+       ==================================================== */
+    @keyframes colorPulse {
+      0% {
+        color: #2563eb;
+        transform: scale(1);
+      }
+      50% {
+        color: #059669;
+        transform: scale(1.1);
+      }
+      100% {
+        color: #dc2626;
+        transform: scale(1);
+      }
+    }
+
+    .animated-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      animation-name: colorPulse;
+      animation-duration: 2.4s;
+      animation-timing-function: ease-in-out;
+      animation-delay: 0.8s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CSS Animation Demonstration</h1>
+    <p>Using <code>@keyframes</code>, <code>animation-delay</code>, <code>animation-iteration-count</code>, and <code>animation-direction</code></p>
+  </header>
+
+  <main>
+    <!-- Centered vertically and horizontally via Flexbox -->
+    <section class="viewport-center">
+
+      <!-- Animation 1 -->
+      <article class="animation-card">
+        <h2>1. Bouncing Ball</h2>
+        <div class="stage">
+          <div class="ball"></div>
+        </div>
+        <div class="anim-details">
+          duration: 0.8s<br>
+          timing: ease-in-out<br>
+          direction: alternate<br>
+          iteration: infinite
+        </div>
+      </article>
+
+      <!-- Animation 2 -->
+      <article class="animation-card">
+        <h2>2. Moving &amp; Rotating Box</h2>
+        <div class="stage">
+          <div class="moving-box"></div>
+        </div>
+        <div class="anim-details">
+          duration: 2.0s<br>
+          timing: ease-in-out<br>
+          delay: 0.4s<br>
+          direction: alternate
+        </div>
+      </article>
+
+      <!-- Animation 3 -->
+      <article class="animation-card">
+        <h2>3. Color Changing Text</h2>
+        <div class="stage">
+          <div class="animated-text">CSS3 Magic</div>
+        </div>
+        <div class="anim-details">
+          duration: 2.4s<br>
+          timing: ease-in-out<br>
+          delay: 0.8s<br>
+          iteration: infinite
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 6</p>
+  </footer>
+
+</body>
+</html>

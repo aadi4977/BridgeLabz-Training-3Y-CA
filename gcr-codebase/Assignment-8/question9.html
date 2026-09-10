@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 9 - Combined Effects Demonstration</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      padding: 35px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Flexbox layout distributing examples evenly across the page */
+    .distribution-wrapper {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: stretch;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 1050px;
+      margin: 0 auto 40px auto;
+    }
+
+    /* Base structure for cards */
+    .combo-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 28px 22px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      /* Balanced smooth transition combining all properties */
+      transition: all 0.3s ease-in-out;
+    }
+
+    .combo-card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .combo-card p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .combo-badge {
+      margin-top: auto;
+      font-size: 11px;
+      font-family: Consolas, monospace;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background-color: #f1f5f9;
+      color: #475569;
+    }
+
+    /* ====================================================
+       1. COMBINED EFFECT 1: GROW & COLOR SHIFT
+       Combines :hover, scale(1.05), translateY(-6px), blue->indigo background, shadow bloom
+       ==================================================== */
+    .effect-grow {
+      border-top: 4px solid #3b82f6;
+    }
+
+    .effect-grow:hover {
+      transform: scale(1.05) translateY(-6px);
+      border-top-color: #4f46e5;
+      box-shadow: 0 16px 30px rgba(79, 70, 229, 0.25);
+    }
+
+    .effect-grow:hover h2 {
+      color: #4f46e5;
+    }
+
+    .effect-grow:active {
+      transform: scale(0.98);
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+    }
+
+    .action-btn-grow {
+      background-color: #3b82f6;
+      color: #ffffff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .effect-grow:hover .action-btn-grow {
+      background-color: #4f46e5;
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    }
+
+    /* ====================================================
+       2. COMBINED EFFECT 2: TILT & EMERALD GLOW
+       Combines :hover, rotate(1.5deg), translateY(-6px), emerald glow
+       ==================================================== */
+    .effect-tilt {
+      border-top: 4px solid #10b981;
+    }
+
+    .effect-tilt:hover {
+      transform: translateY(-6px) rotate(1.5deg);
+      box-shadow: 0 14px 28px rgba(16, 185, 129, 0.22);
+    }
+
+    .effect-tilt:hover h2 {
+      color: #059669;
+    }
+
+    .effect-tilt:active {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    .tilt-icon {
+      width: 48px;
+      height: 48px;
+      background-color: #ecfdf5;
+      color: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .effect-tilt:hover .tilt-icon {
+      background-color: #10b981;
+      color: #ffffff;
+      transform: scale(1.15) rotate(-10deg);
+    }
+
+    /* ====================================================
+       3. COMBINED EFFECT 3: AMBER LIFT & PILL EXPANSION
+       Combines :hover, scale(1.06), amber highlight, warm shadow
+       ==================================================== */
+    .effect-amber {
+      border-top: 4px solid #f59e0b;
+    }
+
+    .effect-amber:hover {
+      transform: scale(1.06) translateY(-5px);
+      box-shadow: 0 16px 28px rgba(245, 158, 11, 0.25);
+    }
+
+    .effect-amber:hover h2 {
+      color: #d97706;
+    }
+
+    .effect-amber:active {
+      transform: scale(0.97);
+    }
+
+    .amber-tag {
+      background-color: #fef3c7;
+      color: #b45309;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .effect-amber:hover .amber-tag {
+      background-color: #f59e0b;
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Combined Effects Demonstration</h1>
+    <p>Combining pseudo-classes (<code>:hover</code>, <code>:active</code>), CSS transitions, and 2D transformations</p>
+  </header>
+
+  <main>
+    <!-- Evenly distributed with Flexbox -->
+    <section class="distribution-wrapper">
+
+      <!-- Effect 1 -->
+      <article class="combo-card effect-grow">
+        <button type="button" class="action-btn-grow">Explore Module</button>
+        <h2>Scale &amp; Color Shift</h2>
+        <p>On hover, both card and button expand slightly, shifting color from blue to indigo with deep shadow bloom.</p>
+        <div class="combo-badge">scale(1.05) + translateY(-6px)</div>
+      </article>
+
+      <!-- Effect 2 -->
+      <article class="combo-card effect-tilt">
+        <div class="tilt-icon">&rarr;</div>
+        <h2>Tilt &amp; Emerald Glow</h2>
+        <p>Hover triggers a gentle 1.5-degree tilt and elevates the card, illuminating with an emerald ambient glow.</p>
+        <div class="combo-badge">rotate(1.5deg) + translateY(-6px)</div>
+      </article>
+
+      <!-- Effect 3 -->
+      <article class="combo-card effect-amber">
+        <span class="amber-tag">Featured Component</span>
+        <h2>Pulse &amp; Amber Lift</h2>
+        <p>Hover triggers a uniform 6% scale growth, warms the accent border, and pops the pill badge forward.</p>
+        <div class="combo-badge">scale(1.06) + shadow bloom</div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 9</p>
+  </footer>
+
+</body>
+</html>

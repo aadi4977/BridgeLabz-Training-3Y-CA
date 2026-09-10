@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 8 - CSS Selectors, Transforms & Animations (Lectures 19-21)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: #64748b;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      border-color: #2563eb;
+    }
+
+    .card .q-num {
+      font-size: 12px;
+      font-weight: bold;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-top: auto;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Assignment 8 &bull; Lectures 19-21</h1>
+      <p>Pseudo-Classes, Tooltips, Animations, UI Components &bull; Single-file solutions with embedded CSS</p>
+    </header>
+
+    <main>
+      <div class="grid">
+
+        <a href="question1.html" class="card">
+          <span class="q-num">Question 1</span>
+          <h2>Pseudo-Classes</h2>
+          <p>Interactive demonstration of :hover, :focus, :active, and :nth-child() aligned in a single Flexbox row.</p>
+        </a>
+
+        <a href="question2.html" class="card">
+          <span class="q-num">Question 2</span>
+          <h2>Pure CSS Tooltips</h2>
+          <p>Tooltips built using position: absolute and smooth 0.3s ease-in-out opacity transitions positioned above elements.</p>
+        </a>
+
+        <a href="question3.html" class="card">
+          <span class="q-num">Question 3</span>
+          <h2>Image Showcase</h2>
+          <p>Six image cards with transform: scale(1.1), dark overlays, rounded corners, shadows, and mobile vertical collapse.</p>
+        </a>
+
+        <a href="question4.html" class="card">
+          <span class="q-num">Question 4</span>
+          <h2>CSS Selectors Practice</h2>
+          <p>Demonstrating element, class, ID, attribute selectors, and combinators (&gt;, +, ~, descendant) with descriptive comments.</p>
+        </a>
+
+        <a href="question5.html" class="card">
+          <span class="q-num">Question 5</span>
+          <h2>Styled Button Collection</h2>
+          <p>Primary, secondary, outline, and disabled buttons with hover, active, :focus, and :disabled states using Flexbox.</p>
+        </a>
+
+        <a href="question6.html" class="card">
+          <span class="q-num">Question 6</span>
+          <h2>Keyframe Animations</h2>
+          <p>Bouncing ball, moving &amp; rotating box, and color-changing text using @keyframes, delay, direction, and iteration-count.</p>
+        </a>
+
+        <a href="question7.html" class="card">
+          <span class="q-num">Question 7</span>
+          <h2>UI Components</h2>
+          <p>Clean dashboard card featuring search bar, dropdown select, and category buttons with focus/hover highlights.</p>
+        </a>
+
+        <a href="question8.html" class="card">
+          <span class="q-num">Question 8</span>
+          <h2>Box-Sizing Comparison</h2>
+          <p>Side-by-side comparison of content-box vs border-box with identical width, padding, contrasting colors, and responsive stacking.</p>
+        </a>
+
+        <a href="question9.html" class="card">
+          <span class="q-num">Question 9</span>
+          <h2>Combined Effects</h2>
+          <p>Integrating pseudo-classes, smooth transitions, and 2D transformations (scale, tilt, pulse) distributed evenly with Flexbox.</p>
+        </a>
+
+        <a href="question10.html" class="card">
+          <span class="q-num">Question 10</span>
+          <h2>Complete Mini UI Layout</h2>
+          <p>Compact layout with header, main card (image + interactive form + buttons), footer, and responsive mobile design.</p>
+        </a>
+
+      </div>
+    </main>
+
+    <footer>
+      <p>BridgeLabz Training &bull; Web Development &bull; Assignment 8</p>
+    </footer>
+  </div>
+
+</body>
+</html>

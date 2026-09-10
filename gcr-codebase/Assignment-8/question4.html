@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 4 - CSS Selectors Practice</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #334155;
+      padding: 30px 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* -----------------------------------------------------------
+       1. ELEMENT SELECTOR
+       Applies styling universally to specific HTML tags
+       ----------------------------------------------------------- */
+    p {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+
+    /* -----------------------------------------------------------
+       2. CLASS SELECTOR
+       Applies styles to elements matching a specific class attribute
+       ----------------------------------------------------------- */
+    .practice-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .callout-box {
+      background-color: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    /* -----------------------------------------------------------
+       3. ID SELECTOR
+       Applies high-priority styling to an element with a unique ID
+       ----------------------------------------------------------- */
+    #highlighted-notice {
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      color: #92400e;
+      margin-bottom: 15px;
+    }
+
+    /* -----------------------------------------------------------
+       4. ATTRIBUTE SELECTOR
+       Matches elements with particular HTML attribute values
+       ----------------------------------------------------------- */
+    /* Selects links that open in a new tab via target="_blank" */
+    a[target="_blank"] {
+      color: #059669;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a[target="_blank"]:hover {
+      text-decoration: underline;
+    }
+
+    /* -----------------------------------------------------------
+       5. COMBINATORS
+       Selects elements depending on relational hierarchy
+       ----------------------------------------------------------- */
+
+    /* Descendant Combinator (space):
+       Targets any <span> located anywhere inside .practice-card */
+    .practice-card span.tag {
+      background-color: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: Consolas, monospace;
+    }
+
+    /* Child Combinator (>):
+       Targets ONLY direct child <li> elements of .direct-list */
+    .direct-list > li {
+      color: #1e293b;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Adjacent Sibling Combinator (+):
+       Targets the paragraph immediately following the <h3> */
+    .practice-card h3 + p {
+      background-color: #f1f5f9;
+      border-left: 3px solid #64748b;
+      padding: 8px 12px;
+      font-style: italic;
+    }
+
+    /* General Sibling Combinator (~):
+       Targets all sibling paragraphs with class .subsequent-note */
+    .practice-card h3 ~ p.subsequent-note {
+      color: #2563eb;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CSS Selectors In Practice</h1>
+    <p>Demonstrating element, class, ID, attribute selectors, and combinators</p>
+  </header>
+
+  <main class="wrapper">
+
+    <!-- 1. Element, Class, and ID Selectors -->
+    <section class="practice-card">
+      <h2>Element, Class, and ID Styling</h2>
+      <p>This regular paragraph receives base styling from the universal <code>p</code> element selector.</p>
+
+      <!-- ID Selector example -->
+      <div id="highlighted-notice">
+        #highlighted-notice: Target styled using unique ID selector with yellow highlight.
+      </div>
+
+      <!-- Class Selector example -->
+      <div class="callout-box">
+        .callout-box: Target styled using class selector with blue accent border.
+      </div>
+    </section>
+
+    <!-- 2. Attribute Selector Demo -->
+    <section class="practice-card">
+      <h2>Attribute Selectors: a[target="_blank"]</h2>
+      <p>
+        Links with the attribute <code>target="_blank"</code> are automatically colored green:
+      </p>
+      <p>
+        &bull; <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs (Opens in new tab)</a><br>
+        &bull; <a href="#internal" style="color: #64748b;">Internal Page Link (No target attribute)</a>
+      </p>
+    </section>
+
+    <!-- 3. Combinators Demo -->
+    <section class="practice-card">
+      <h2>Combinators (&gt;, +, ~, and Descendant)</h2>
+
+      <p>Using descendant selector for tag badge: <span class="tag">CSS Selectors</span></p>
+
+      <div style="margin: 16px 0;">
+        <p><strong>Child Combinator (&gt;) List:</strong></p>
+        <ul class="direct-list" style="padding-left: 20px;">
+          <li>Direct Child 1 (Styled bold via &gt;)
+            <ul style="padding-left: 20px; font-weight: normal; font-size: 13px; margin-top: 4px;">
+              <li>Nested child item (Not bold, unaffected by &gt;)</li>
+            </ul>
+          </li>
+          <li>Direct Child 2 (Styled bold via &gt;)</li>
+        </ul>
+      </div>
+
+      <h3>Reference Heading 3</h3>
+      <p>This paragraph is an adjacent sibling (+), directly attached below the H3.</p>
+      <p class="subsequent-note">This paragraph is a general sibling (~) matching .subsequent-note.</p>
+      <p class="subsequent-note">Another general sibling (~) matching .subsequent-note.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 4</p>
+  </footer>
+
+</body>
+</html>

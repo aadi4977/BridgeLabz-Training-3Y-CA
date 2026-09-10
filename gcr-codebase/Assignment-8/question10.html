@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 10 - Mini User Interface Layout</title>
+  <style>
+    /* Consistent Box-Sizing and Base Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Section */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 18px 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .header-tag {
+      font-size: 13px;
+      color: #64748b;
+      background-color: #f8fafc;
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Main Section: Centering content card using Flexbox */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 35px 20px;
+    }
+
+    /* Main Content Card */
+    .ui-card {
+      background-color: #ffffff;
+      max-width: 760px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      /* Consistent soft drop-shadow */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+      padding: 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    /* Left Column: Image and Profile Info */
+    .card-media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 220px;
+      flex-shrink: 0;
+    }
+
+    .profile-img-wrap {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid #e2e8f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 12px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .profile-img-wrap:hover {
+      transform: scale(1.04);
+      border-color: #3b82f6;
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-media h2 {
+      font-size: 17px;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .card-media p {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Right Column: Form */
+    .card-form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-row label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Inputs and Select with consistent borders, padding, and pseudo-classes */
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1e293b;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-control:hover {
+      border-color: #94a3b8;
+    }
+
+    .form-control:focus {
+      border-color: #2563eb;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Form Buttons in a Flex row */
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit {
+      background-color: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-submit:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:active {
+      transform: translateY(1px);
+    }
+
+    .btn-reset {
+      background-color: #ffffff;
+      border-color: #cbd5e1;
+      color: #64748b;
+    }
+
+    .btn-reset:hover {
+      background-color: #f1f5f9;
+      color: #334155;
+    }
+
+    /* ====================================================
+       RESPONSIVE BREAKPOINT: Stack card vertically on smaller screens
+       ==================================================== */
+    @media (max-width: 680px) {
+      .ui-card {
+        flex-direction: column;
+        padding: 24px;
+        gap: 24px;
+      }
+
+      .card-media {
+        width: 100%;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand-title">DevPortal UI</div>
+      <span class="header-tag">Assignment 8 &bull; Q10</span>
+    </div>
+  </header>
+
+  <!-- Main Content Card -->
+  <main>
+    <article class="ui-card">
+
+      <!-- Left Column: Small image and information -->
+      <div class="card-media">
+        <div class="profile-img-wrap">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><rect width='100%25' height='100%25' fill='%233b82f6'/><circle cx='70' cy='52' r='28' fill='%23ffffff'/><path d='M25,125 C25,95 45,85 70,85 C95,85 115,95 115,125 Z' fill='%23ffffff'/></svg>" alt="Student Profile Graphic">
+        </div>
+        <h2>Aadi Gupta</h2>
+        <p>Full Stack Trainee</p>
+      </div>
+
+      <!-- Right Column: Interactive Form with hover/focus states -->
+      <form class="card-form" action="#">
+        
+        <div class="form-row">
+          <label for="studentName">Full Name</label>
+          <input type="text" id="studentName" class="form-control" placeholder="Enter your full name">
+        </div>
+
+        <div class="form-row">
+          <label for="studentEmail">Email Address</label>
+          <input type="email" id="studentEmail" class="form-control" placeholder="name@example.com">
+        </div>
+
+        <div class="form-row">
+          <label for="trackSelect">Learning Track</label>
+          <select id="trackSelect" class="form-control">
+            <option value="frontend">Frontend Web Development</option>
+            <option value="backend">Backend Java / Node.js</option>
+            <option value="devops">Cloud &amp; DevOps Practice</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="projectNotes">Project Notes</label>
+          <textarea id="projectNotes" class="form-control" placeholder="Enter brief overview..."></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="submit" class="btn btn-submit">Save Information</button>
+          <button type="reset" class="btn btn-reset">Clear Form</button>
+        </div>
+
+      </form>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 BridgeLabz Training &bull; Complete Mini UI Layout &bull; Question 10</p>
+  </footer>
+
+</body>
+</html>

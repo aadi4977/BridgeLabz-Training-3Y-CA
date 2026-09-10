@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 5 - Styled Button Collection</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Main card container */
+    .button-card {
+      max-width: 800px;
+      margin: 0 auto 35px auto;
+      background-color: #ffffff;
+      padding: 35px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Flexbox container ensuring consistent button alignment and spacing */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    /* Base button design */
+    .btn {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      /* Smooth transition for hover, active, and focus effects */
+      transition: all 0.25s ease;
+    }
+
+    /* 1. Primary Button: Solid blue with soft shadow */
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2);
+    }
+
+    /* 2. Secondary Button: Slate neutral */
+    .btn-secondary {
+      background-color: #475569;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(71, 85, 105, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background-color: #334155;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(71, 85, 105, 0.35);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 3px rgba(71, 85, 105, 0.2);
+    }
+
+    /* 3. Outline Button: Bordered emerald */
+    .btn-outline {
+      background-color: transparent;
+      border-color: #059669;
+      color: #059669;
+    }
+
+    .btn-outline:hover {
+      background-color: #059669;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    }
+
+    .btn-outline:active {
+      background-color: #047857;
+      border-color: #047857;
+      transform: translateY(1px);
+    }
+
+    /* 4. Disabled Button: Demonstrated with :disabled pseudo-class */
+    .btn:disabled {
+      background-color: #e2e8f0;
+      color: #94a3b8;
+      border-color: #e2e8f0;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Clearly defined :focus states for accessibility */
+    .btn:focus {
+      outline: 2px solid #0284c7;
+      outline-offset: 3px;
+    }
+
+    /* Details table / breakdown */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      font-size: 13px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 20px;
+    }
+
+    .spec-item {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .spec-item h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #334155;
+    }
+
+    .spec-item p {
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Styled Button Collection</h1>
+    <p>Demonstrating Primary, Secondary, Outline, and Disabled states with <code>:hover</code>, <code>:active</code>, and <code>:focus</code></p>
+  </header>
+
+  <main>
+    <section class="button-card">
+
+      <!-- Buttons aligned with consistent spacing using Flexbox -->
+      <div class="button-group">
+        <button type="button" class="btn btn-primary">Primary Action</button>
+        <button type="button" class="btn btn-secondary">Secondary Action</button>
+        <button type="button" class="btn btn-outline">Outline Action</button>
+        <button type="button" class="btn" disabled>Disabled State</button>
+      </div>
+
+      <!-- Specs breakdown -->
+      <div class="specs-grid">
+        <div class="spec-item">
+          <h3>Primary</h3>
+          <p>Filled blue button with hover lift, shadow expansion, and press-down active state.</p>
+        </div>
+        <div class="spec-item">
+          <h3>Secondary</h3>
+          <p>Dark slate tone used for neutral secondary choices like cancel or view details.</p>
+        </div>
+        <div class="spec-item">
+          <h3>Outline</h3>
+          <p>Transparent core that transitions to a full emerald green fill upon hover.</p>
+        </div>
+        <div class="spec-item">
+          <h3>Disabled</h3>
+          <p>Uses <code>:disabled</code> pseudo-class to suppress pointer cursor and all motion.</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 5</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 1 - CSS Pseudo-Classes Demo</title>
+  <style>
+    /* Basic reset and font setup */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f5f8;
+      color: #2c3e50;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      color: #1a252f;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #636e72;
+    }
+
+    /* Flexbox container to align all 4 cards neatly in one row */
+    .row-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto 35px auto;
+    }
+
+    /* Card styling for each pseudo-class example */
+    .example-card {
+      background-color: #ffffff;
+      border: 1px solid #dfe6e9;
+      border-radius: 8px;
+      padding: 22px 18px;
+      width: 245px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .example-card h2 {
+      font-size: 17px;
+      color: #2980b9;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ecf0f1;
+    }
+
+    .interactive-area {
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .explanation {
+      font-size: 12px;
+      color: #555555;
+      line-height: 1.5;
+      margin-top: auto;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 6px;
+      border-left: 3px solid #3498db;
+    }
+
+    /* 1. :hover example on a link and a button */
+    .hover-link {
+      color: #2980b9;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Hover state changes text color and adds background highlight */
+    .hover-link:hover {
+      background-color: #2980b9;
+      color: #ffffff;
+    }
+
+    /* 2. :focus example on an input field */
+    .focus-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #b2bec3;
+      border-radius: 5px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    /* Focus state activates when clicked or focused with keyboard Tab */
+    .focus-input:focus {
+      border-color: #27ae60;
+      background-color: #eafaf1;
+      box-shadow: 0 0 5px rgba(39, 174, 96, 0.4);
+    }
+
+    /* 3. :active example on an action button */
+    .active-btn {
+      background-color: #e67e22;
+      color: #ffffff;
+      border: none;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #b95d08;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    /* Active state activates while user is holding mouse click */
+    .active-btn:active {
+      background-color: #d35400;
+      transform: translateY(3px);
+      box-shadow: none;
+    }
+
+    /* 4. :nth-child() on list items */
+    .nth-list {
+      list-style-type: none;
+      width: 100%;
+      font-size: 12px;
+    }
+
+    .nth-list li {
+      padding: 5px 8px;
+      border-radius: 3px;
+      margin-bottom: 3px;
+    }
+
+    /* Even rows get light blue background */
+    .nth-list li:nth-child(even) {
+      background-color: #e8f4f8;
+      color: #1b4965;
+    }
+
+    /* Odd rows get plain light gray background */
+    .nth-list li:nth-child(odd) {
+      background-color: #f1f2f6;
+      color: #2f3542;
+    }
+
+    /* Specific highlight for 3rd child */
+    .nth-list li:nth-child(3) {
+      border-left: 3px solid #e74c3c;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Demonstration of CSS Pseudo-Classes</h1>
+    <p>Exploring <code>:hover</code>, <code>:focus</code>, <code>:active</code>, and <code>:nth-child()</code> aligned in a single Flexbox row</p>
+  </header>
+
+  <main>
+    <section class="row-container">
+
+      <!-- Card 1: :hover -->
+      <article class="example-card">
+        <h2>1. :hover</h2>
+        <div class="interactive-area">
+          <a href="#" class="hover-link">Hover Over Me</a>
+        </div>
+        <p class="explanation">
+          <strong>:hover</strong> triggers when the mouse pointer glides over an element. Here, the link inverts its text color and gains a blue fill.
+        </p>
+      </article>
+
+      <!-- Card 2: :focus -->
+      <article class="example-card">
+        <h2>2. :focus</h2>
+        <div class="interactive-area">
+          <input type="text" class="focus-input" placeholder="Click to focus...">
+        </div>
+        <p class="explanation">
+          <strong>:focus</strong> activates when an input field receives keyboard or mouse focus. Here, the border turns green with a subtle glow.
+        </p>
+      </article>
+
+      <!-- Card 3: :active -->
+      <article class="example-card">
+        <h2>3. :active</h2>
+        <div class="interactive-area">
+          <button type="button" class="active-btn">Click &amp; Hold</button>
+        </div>
+        <p class="explanation">
+          <strong>:active</strong> represents the exact moment an element is being clicked down. The button sinks down 3px and deepens in color.
+        </p>
+      </article>
+
+      <!-- Card 4: :nth-child() -->
+      <article class="example-card">
+        <h2>4. :nth-child()</h2>
+        <div class="interactive-area">
+          <ul class="nth-list">
+            <li>Item 1 (Odd)</li>
+            <li>Item 2 (Even)</li>
+            <li>Item 3 (Special 3rd)</li>
+            <li>Item 4 (Even)</li>
+          </ul>
+        </div>
+        <p class="explanation">
+          <strong>:nth-child()</strong> targets elements by index. Even items get a light blue tint while the 3rd child has a distinct red accent.
+        </p>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 1</p>
+  </footer>
+
+</body>
+</html>

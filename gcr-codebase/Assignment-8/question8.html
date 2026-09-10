@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 8 - Box-Sizing Comparison</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f2f6;
+      color: #2f3542;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #1e272e;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #747d8c;
+    }
+
+    /* Outer wrapper centering content */
+    .comparison-container {
+      max-width: 880px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 40px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Common declared specs note */
+    .specs-banner {
+      background-color: #f8f9fa;
+      border: 1px dashed #b2bec3;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 35px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Flexbox row aligning two boxes side-by-side */
+    .boxes-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      width: 100%;
+      margin-bottom: 35px;
+    }
+
+    .box-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box-column h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #2f3542;
+    }
+
+    /* ====================================================
+       BOX 1: Default content-box
+       Contrasting coral/red background
+       ==================================================== */
+    .box-content {
+      box-sizing: content-box; /* Default CSS behavior */
+      width: 220px;
+      padding: 25px;
+      border: 8px solid #d63031;
+      background-color: #ff7675;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    /* ====================================================
+       BOX 2: border-box
+       Contrasting cyan/teal background
+       ==================================================== */
+    .box-border {
+      box-sizing: border-box; /* Modern border-box behavior */
+      width: 220px;
+      padding: 25px;
+      border: 8px solid #0984e3;
+      background-color: #00cec9;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    /* Measurement breakdown cards */
+    .math-card {
+      margin-top: 15px;
+      width: 250px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .math-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    /* Explanatory summary text */
+    .explanation-summary {
+      max-width: 700px;
+      background-color: #fdfefe;
+      border-left: 4px solid #3498db;
+      padding: 14px 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #57606f;
+      line-height: 1.6;
+    }
+
+    /* ====================================================
+       RESPONSIVENESS: Stacks in column below 650px
+       ==================================================== */
+    @media (max-width: 650px) {
+      .boxes-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Box-Sizing Comparison</h1>
+    <p>Comparing <code>content-box</code> against <code>border-box</code> with identical width and padding</p>
+  </header>
+
+  <main>
+    <section class="comparison-container">
+
+      <!-- Common Declared Specifications -->
+      <div class="specs-banner">
+        <strong>Identical Declared Values for Both Boxes:</strong><br>
+        <code>width: 220px;</code> &bull; <code>padding: 25px;</code> &bull; <code>border: 8px solid;</code>
+      </div>
+
+      <!-- Side-by-side flex layout -->
+      <div class="boxes-row">
+
+        <!-- Box 1 -->
+        <div class="box-column">
+          <h2>content-box (Default)</h2>
+          <div class="box-content">
+            220px Box<br>
+            <span style="font-size: 12px; font-weight: normal;">(Expanded)</span>
+          </div>
+          <div class="math-card">
+            <strong style="color: #d63031;">Total Rendered Width: 286px</strong>
+            Calculation:<br>
+            220px (Content)<br>
+            + 50px (25px &times; 2 Padding)<br>
+            + 16px (8px &times; 2 Border)<br>
+            = <strong>286px total</strong>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="box-column">
+          <h2>border-box</h2>
+          <div class="box-border">
+            220px Box<br>
+            <span style="font-size: 12px; font-weight: normal;">(Preserved)</span>
+          </div>
+          <div class="math-card">
+            <strong style="color: #0984e3;">Total Rendered Width: 220px</strong>
+            Calculation:<br>
+            Padding and border are absorbed inside the declared width.<br>
+            Content width shrinks to 154px.<br>
+            = <strong>220px total</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Descriptive Explanation -->
+      <div class="explanation-summary">
+        <p>
+          <strong>Why This Matters:</strong> In default <code>content-box</code>, any padding or border is added on top of the specified width, frequently causing unintended grid overflows. Setting <code>box-sizing: border-box</code> locks the rendered outer width to exactly 220px, making layouts predictable and responsive.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 8 &bull; Lecture 19-21 &bull; Question 8</p>
+  </footer>
+
+</body>
+</html>
