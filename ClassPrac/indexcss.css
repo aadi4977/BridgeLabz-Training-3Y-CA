@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 40px;
+
+    background-color: white;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.logo h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+.movie-box {
+    width: 250px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    margin: 20px;
+    transition: 0.3s;
+}
+
+.movie-box:hover {
+    transform: scale(1.05);
+}
+
+
+.movie-box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.Movie-info {
+    padding: 15px;
+}
+.movies {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+.movie-box {
+    width: 250px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+
+    animation: movieUp 1s ease-out;
+}
+
+@keyframes movieUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
