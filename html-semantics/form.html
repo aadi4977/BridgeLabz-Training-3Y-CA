@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title> 
+    <link rel="stylesheet" href="form.css">
+    </head> 
+    <body>
+        
+        <form action = "register" method="post">
+            <h1><u>Student Registration Form </u></h1>
+            <label for = "Fullname"><b>Full Name:</b></label>
+            <input type="text" id="Fullname" name="Fullname" required placeholder="eg. John Doe">
+<br>
+<br>
+            <label for = "Email"><b>University Mail :</b></label>
+            <input type="email" id="Email" name="Email" required placeholder="eg. john.doe@university.edu">
+            <br>
+            <br>
+            <label for = "DateofBirth"><b>Date of Birth :</b></label>
+            <input type="date" id="DateofBirth" name="DateofBirth" required>
+            <br>
+            <br>
+        <label for = "Gender"><b>Gender :</b></label>
+        <input type="radio" id="Male" name="Gender" value="Male" required>
+        <label for="Male">Male</label>
+        <input type="radio" id="Female" name="Gender" value="Female" required>
+        <label for="Female">Female</label>
+<br>
+<br>
+        <label for = "phone"><b>Phone No. :</b></label>
+        <input type="text" id="phone" name="phone" required placeholder="eg.956990927XXXX" >
+<br>
+<br>
+        <label for = "Password"><b>Password:</b></label>
+        <input type="password" id="Password" name="Password" required>
+<br>
+<br>
+        <label for = "Course"><b>Course:</b></label>
+        <select id="Course" name="Course" required>
+            <option value="">Select a course</option>
+            <option value="Java">Java</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+        </select>
+        <br>
+        <br>
+        <label for = "InternshipPreference"><b>Internship Preference :</b></label>
+        <input type="radio" id="prefernce" name="InternshipPreference" value="Yes" required>
+        <label for="Remote">Remote</label>
+
+        <input type="radio" id="Online" name="InternshipPreference" value="Online">
+        <label for="Online">Online</label>
+        <br>
+        <br>
+        <label for = "Resume"><b>Upload Resume :</b></label>
+        <input type="file" id="Resume" name="Resume" required>
+        <br>
+        <br>
+        <textarea id="message" name="message" rows="4" cols="40" placeholder="Write your message here..."></textarea>
+        <br>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+<br>
+            <a href="https://www.w3schools.com/html/" target="_blank" style="color: blue;">Learn HTML</a>
+      <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/play/HcOc7PSMHi4"
+    allowfullscreen>
+</iframe>
+</iframe>    
+        </form>
+    </body>

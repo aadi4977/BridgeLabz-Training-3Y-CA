@@ -1,28 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Main Section Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #861313;
+            height: 100px;
+        }
+        .rectangle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .box1, .box2, .box3 {
+            width: 100px;
+            height: 50px;
+            background-color: #118f43;
+            margin: 5px;
+        }
+        .circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #118f43;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .searchbar {
+            width: 200px;
+            height: 40px;
+            background-color: #118f43;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      body {
+    margin: 0;
+  }
+
+.bottom {
+    height: 100px;
+    background-color: brown;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+     .middle {
+    height: 400px;
+    background-color: lightblue;
+}
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>My Personal Website</h1>
-  </header>
+    <header class="header">
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </nav>
+        <div class="circle">
+            circle1
+        </div>
 
-  <main>
-    <p>
-      Hi, I'm [Your Name]. This page is about my journey learning cloud
-      computing and web development, and my goal of becoming a Cloud
-      Solutions Architect.
-    </p>
-  </main>
+        <div class="rectangle">
+            <div class="box1">
+                box1
+            </div>
+
+            <div class="box2">
+                box2
+            </div>
+
+            <div class="box3">
+                box3
+            </div>
+        </div>
+
+        <div class="searchbar">
+            searchbar
+        </div>
+
+        <div class="circle">
+            circle2
+        </div>
+
+    </header>
+
+<div class="Side Bar">
+  Side Bar
+  </div>
+  
+
+    <div class="middle">
+        Middle Section
+    </div>
+
+    <div class="bottom">
+        Bottom Bar
+    </div>
+    <main>
+      <div></div>
+    </main>
+</div>
+
 
 </body>
 </html>
