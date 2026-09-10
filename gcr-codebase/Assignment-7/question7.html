@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 7 - Typography and Text Styling</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333333;
+      padding: 40px 20px;
+    }
+
+    /* Centered article layout wrapper */
+    article.content-card {
+      max-width: 740px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 45px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    header {
+      margin-bottom: 30px;
+      border-bottom: 2px solid #eaedf1;
+      padding-bottom: 20px;
+    }
+
+    /* Article title: Serif font, weight 700, large size */
+    header h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #1a252f;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    /* Subtitle: Sans-serif font, weight 300 (light) */
+    .article-meta {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: #7f8c8d;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* Subheadings: Sans-serif font, weight 600 */
+    h2 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Body paragraphs: Sans-serif, readability with line-height & letter-spacing */
+    p {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: 0.3px;
+      text-align: justify;
+      color: #444444;
+      margin-bottom: 18px;
+    }
+
+    /* Drop-cap using ::first-letter on intro paragraph */
+    .intro-paragraph::first-letter {
+      font-family: 'Georgia', serif;
+      font-size: 52px;
+      float: left;
+      line-height: 0.85;
+      padding-right: 10px;
+      padding-top: 4px;
+      color: #2980b9;
+      font-weight: bold;
+    }
+
+    /* ::first-line pseudo-element on lead paragraph for visual emphasis */
+    .intro-paragraph::first-line {
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 0.5px;
+    }
+
+    /* Custom styled <mark> element */
+    mark {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Custom styled <strong> element */
+    strong {
+      color: #1a5276;
+      font-weight: 700;
+    }
+
+    /* Custom styled <em> element */
+    em {
+      color: #c0392b;
+      font-style: italic;
+    }
+
+    /* Monospace quote snippet */
+    .quote-box {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      background-color: #f8f9fa;
+      border-left: 4px solid #3498db;
+      padding: 14px 18px;
+      margin: 22px 0;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 13px;
+      color: #888888;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Article Container -->
+  <main>
+    <article class="content-card">
+
+      <header>
+        <h1>Crafting Modern Digital Typography</h1>
+        <p class="article-meta">Written by Aadi Gupta &bull; Published September 2026</p>
+      </header>
+
+      <!-- Intro paragraph showcasing ::first-letter drop cap and ::first-line styling -->
+      <p class="intro-paragraph">
+        Typography represents the voice of your written content on the web. When users visit a webpage, their immediate subconscious impression is shaped not just by the graphics or colors, but by how comfortably their eyes can glide through paragraphs and headings. Selecting appropriate font pairings turns plain text into an enjoyable reading journey.
+      </p>
+
+      <h2>Visual Hierarchy and Balanced Proportions</h2>
+      <p>
+        Good typography demands strict control over proportions. By establishing distinct <strong>font sizes</strong> and <strong>weights</strong>, we guide readers through major ideas and secondary details. Setting a generous <code>line-height</code> of 1.75 prevents dense text crowding, while subtle <code>letter-spacing</code> improves word clarity across high-resolution displays.
+      </p>
+
+      <!-- Monospace demonstration quote -->
+      <div class="quote-box">
+        "Good design is obvious. Great typography is transparent." &mdash; Joe Sparano
+      </div>
+
+      <h2>Inline Highlighting and Semantic Emphasis</h2>
+      <p>
+        HTML offers specialized tags for micro-emphasis. We can use the <mark>mark element</mark> to bring key definitions into immediate focus. Important concepts deserve to be rendered with <strong>strong emphasis</strong> in a distinct deep tone, whereas contextual nuances can be emphasized using <em>expressive italics</em> to draw the reader's attention gently.
+      </p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 7</p>
+  </footer>
+
+</body>
+</html>

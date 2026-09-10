@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 4 - Shadows and Depth Effect Layout</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f4f8;
+      color: #2d3436;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Heading with text-shadow for subtle 3D depth */
+    header h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: #7f8c8d;
+    }
+
+    /* Cards container arranged horizontally in a row using Flexbox */
+    .cards-row {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 28px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto 40px auto;
+    }
+
+    /* Base card layout */
+    .card {
+      background-color: #ffffff;
+      width: 290px;
+      border-radius: 12px;
+      padding: 26px 20px;
+      text-align: center;
+      /* Smooth transitions for lift animation and shadow expansion */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Circular avatar placeholder */
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #34495e;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 19px;
+      color: #2c3e50;
+      margin-bottom: 4px;
+      /* Subtitle text shadow */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .role {
+      font-size: 13px;
+      color: #3498db;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bio {
+      font-size: 13px;
+      color: #636e72;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .shadow-spec {
+      font-size: 12px;
+      background-color: #f8f9fa;
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: #555;
+      font-family: Consolas, monospace;
+      margin-top: auto;
+      border: 1px solid #e9ecef;
+    }
+
+    /* Card 1: Soft neutral shadow */
+    .card-soft {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-soft:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 26px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Card 2: Colored blue ambient shadow */
+    .card-colored {
+      box-shadow: 0 6px 16px rgba(52, 152, 219, 0.28);
+    }
+
+    .card-colored .avatar {
+      background-color: #2980b9;
+    }
+
+    .card-colored:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(52, 152, 219, 0.42);
+    }
+
+    /* Card 3: Multi-layered deep elevation shadow */
+    .card-layered {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-layered .avatar {
+      background-color: #27ae60;
+    }
+
+    .card-layered:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08), 0 22px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with text-shadow -->
+  <header>
+    <h1>Shadows and Depth Effect Cards</h1>
+    <p>Demonstrating text-shadow on headings and hover-lift transitions with box-shadows</p>
+  </header>
+
+  <main>
+    <!-- Single row flex container -->
+    <section class="cards-row">
+
+      <!-- Card 1 -->
+      <article class="card card-soft">
+        <div class="avatar">KS</div>
+        <h2>Kunal Sharma</h2>
+        <span class="role">UI / UX Designer</span>
+        <p class="bio">
+          Creates clean user journeys and wireframes with focus on minimal visual clutter and accessible color palettes.
+        </p>
+        <div class="shadow-spec">
+          Shadow: 0 4px 10px (Soft)
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card card-colored">
+        <div class="avatar">AP</div>
+        <h2>Ananya Patel</h2>
+        <span class="role">Frontend Developer</span>
+        <p class="bio">
+          Builds responsive web interfaces using semantic HTML5, modern CSS flexbox layouts, and cross-browser testing.
+        </p>
+        <div class="shadow-spec">
+          Shadow: 0 6px 16px (Blue Glow)
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card card-layered">
+        <div class="avatar">VM</div>
+        <h2>Vikram Malhotra</h2>
+        <span class="role">Full Stack Engineer</span>
+        <p class="bio">
+          Develops lightweight server APIs and integrates database schemas with responsive client-side dashboards.
+        </p>
+        <div class="shadow-spec">
+          Shadow: Dual Layer Depth
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 4</p>
+  </footer>
+
+</body>
+</html>

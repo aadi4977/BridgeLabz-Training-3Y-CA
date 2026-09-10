@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 6 - CSS Transformations Showcase</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #2d3436;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #636e72;
+    }
+
+    /* Horizontal layout using Flexbox */
+    .transform-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
+      max-width: 1050px;
+      margin: 0 auto 50px auto;
+    }
+
+    /* Container wrapper for each box and its label */
+    .transform-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 200px;
+      text-align: center;
+    }
+
+    /* Base box styling */
+    .box {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      margin-bottom: 20px;
+      /* Smooth transition as required */
+      transition: all 0.4s ease;
+    }
+
+    /* Box 1: Rotate */
+    .box-rotate {
+      background-color: #e17055;
+    }
+
+    .box-rotate:hover {
+      transform: rotate(25deg);
+      box-shadow: 0 8px 18px rgba(225, 112, 85, 0.4);
+    }
+
+    /* Box 2: Scale */
+    .box-scale {
+      background-color: #0984e3;
+    }
+
+    .box-scale:hover {
+      transform: scale(1.22);
+      box-shadow: 0 10px 22px rgba(9, 132, 227, 0.4);
+    }
+
+    /* Box 3: Translate */
+    .box-translate {
+      background-color: #00b894;
+    }
+
+    .box-translate:hover {
+      transform: translateY(-22px);
+      box-shadow: 0 12px 24px rgba(0, 184, 148, 0.4);
+    }
+
+    /* Box 4: Skew */
+    .box-skew {
+      background-color: #6c5ce7;
+    }
+
+    .box-skew:hover {
+      transform: skewX(-16deg);
+      box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+    }
+
+    /* Descriptive labels below each box */
+    .label-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #2d3436;
+      margin-bottom: 4px;
+    }
+
+    .label-code {
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      background-color: #e9ecef;
+      color: #d63031;
+      padding: 3px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .label-desc {
+      font-size: 12px;
+      color: #636e72;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>CSS Transformations Showcase</h1>
+    <p>Hover over each shape to trigger <code>rotate()</code>, <code>scale()</code>, <code>translate()</code>, and <code>skew()</code></p>
+  </header>
+
+  <!-- Main section -->
+  <main>
+    <section class="transform-row">
+
+      <!-- 1. Rotate Box -->
+      <div class="transform-card">
+        <div class="box box-rotate">Rotate</div>
+        <div class="label-title">Rotation</div>
+        <div class="label-code">transform: rotate(25deg)</div>
+        <p class="label-desc">Pivots the box clockwise by 25 degrees on hover.</p>
+      </div>
+
+      <!-- 2. Scale Box -->
+      <div class="transform-card">
+        <div class="box box-scale">Scale</div>
+        <div class="label-title">Scaling</div>
+        <div class="label-code">transform: scale(1.22)</div>
+        <p class="label-desc">Magnifies the box dimensions uniformly by 22%.</p>
+      </div>
+
+      <!-- 3. Translate Box -->
+      <div class="transform-card">
+        <div class="box box-translate">Translate</div>
+        <div class="label-title">Translation</div>
+        <div class="label-code">transform: translateY(-22px)</div>
+        <p class="label-desc">Shifts the box vertically upwards by 22 pixels.</p>
+      </div>
+
+      <!-- 4. Skew Box -->
+      <div class="transform-card">
+        <div class="box box-skew">Skew</div>
+        <div class="label-title">Skewing</div>
+        <div class="label-code">transform: skewX(-16deg)</div>
+        <p class="label-desc">Distorts the angles along the X-axis by -16 degrees.</p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 6</p>
+  </footer>
+
+</body>
+</html>

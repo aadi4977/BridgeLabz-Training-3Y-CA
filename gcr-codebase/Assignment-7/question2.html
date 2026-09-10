@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 2 - Height and Width Practice</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #1f2d3d;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #5c6b73;
+    }
+
+    /* Flexbox layout to center items both horizontally and vertically */
+    .viewport-wrapper {
+      min-height: 75vh;
+      display: flex;
+      justify-content: center; /* horizontal centering */
+      align-items: center;     /* vertical centering */
+      gap: 25px;
+      flex-wrap: wrap;
+      padding: 15px;
+      border: 1px dashed #b0bec5;
+      background-color: #ffffff;
+      border-radius: 8px;
+    }
+
+    /* Common card structure */
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      line-height: 1.5;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      padding-bottom: 6px;
+    }
+
+    .card ul {
+      list-style-type: none;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .card ul li {
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 13px;
+    }
+
+    /* Box 1: uses px width and em min-height with overflow hidden */
+    .box-1 {
+      width: 270px;
+      min-height: 19em;
+      max-width: 300px;
+      background-color: #ffeaa7; /* warm pastel yellow */
+      border: 2px solid #fdcb6e;
+      overflow: hidden;
+    }
+
+    /* Box 2: uses % width and vh min-height with overflow auto */
+    .box-2 {
+      width: 30%;
+      min-height: 40vh;
+      max-width: 320px;
+      background-color: #c7ecee; /* soft pastel blue-cyan */
+      border: 2px solid #81ecec;
+      overflow: auto; /* enables scrolling if content overflows */
+    }
+
+    /* Box 3: uses em width and vh height with min-height and overflow visible */
+    .box-3 {
+      width: 18em;
+      min-height: 30vh;
+      max-width: 280px;
+      background-color: #dff9fb; /* pale ice blue */
+      border: 2px solid #7ed6df;
+      overflow: visible;
+    }
+
+    /* Scrollable helper container for box 2 demonstration */
+    .scroll-note {
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Height &amp; Width Practice Layout</h1>
+    <p>Exploring sizing units (px, %, vh, em), min/max limits, and overflow properties</p>
+  </header>
+
+  <!-- Main section centering cards vertically & horizontally -->
+  <main>
+    <section class="viewport-wrapper">
+
+      <!-- Box 1 -->
+      <article class="card box-1">
+        <h2>Box 1: px &amp; em Units</h2>
+        <ul>
+          <li><strong>Width:</strong> 270px</li>
+          <li><strong>Min-Height:</strong> 19em</li>
+          <li><strong>Max-Width:</strong> 300px</li>
+          <li><strong>Overflow:</strong> hidden</li>
+        </ul>
+        <p>
+          This card relies on <code>px</code> for fixed width and <code>em</code> for height relative to font size.
+          The <code>overflow: hidden</code> rule trims any content that spills beyond its boundaries.
+        </p>
+      </article>
+
+      <!-- Box 2 -->
+      <article class="card box-2">
+        <h2>Box 2: % &amp; vh Units</h2>
+        <ul>
+          <li><strong>Width:</strong> 30%</li>
+          <li><strong>Min-Height:</strong> 40vh</li>
+          <li><strong>Max-Width:</strong> 320px</li>
+          <li><strong>Overflow:</strong> auto</li>
+        </ul>
+        <p>
+          This card scales with the browser width using <code>30%</code> and has a height of at least <code>40vh</code>.
+        </p>
+        <div class="scroll-note">
+          <p>
+            Because <code>overflow: auto</code> is set, if the text exceeds the container height, a scrollbar appears automatically so the reader does not lose any information. Extra text here ensures the scroll behavior is active when resized.
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 3 -->
+      <article class="card box-3">
+        <h2>Box 3: em &amp; vh Units</h2>
+        <ul>
+          <li><strong>Width:</strong> 18em</li>
+          <li><strong>Min-Height:</strong> 30vh</li>
+          <li><strong>Max-Width:</strong> 280px</li>
+          <li><strong>Overflow:</strong> visible</li>
+        </ul>
+        <p>
+          This card uses <code>em</code> for width and viewport height (<code>vh</code>) for its minimum height. 
+          Default <code>overflow: visible</code> lets child elements stay visible even if they extend outside.
+        </p>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 2</p>
+  </footer>
+
+</body>
+</html>

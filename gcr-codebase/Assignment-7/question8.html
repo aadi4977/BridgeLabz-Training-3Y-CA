@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 8 - Box Model Exploration</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fa;
+      color: #2c3e50;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #1f2a44;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #636e72;
+    }
+
+    /* Main Flexbox container centering the demonstrations */
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* ====================================================
+       1. CONCENTRIC VISUALIZATION OF THE BOX MODEL LAYERS
+       ==================================================== */
+    .concentric-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .concentric-card h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #2d3436;
+    }
+
+    /* Outer Layer: Margin */
+    .layer-margin {
+      background-color: #ffecd2;
+      border: 2px dashed #d35400;
+      padding: 24px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    /* Middle Layer: Border */
+    .layer-border {
+      background-color: #fff9c4;
+      border: 8px solid #f39c12;
+      padding: 22px;
+      text-align: center;
+      border-radius: 6px;
+    }
+
+    /* Inner Layer: Padding */
+    .layer-padding {
+      background-color: #d4edda;
+      border: 2px dashed #27ae60;
+      padding: 20px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    /* Center Layer: Content */
+    .layer-content {
+      background-color: #cce5ff;
+      border: 1px solid #3498db;
+      padding: 15px 30px;
+      font-weight: bold;
+      color: #004085;
+      border-radius: 4px;
+    }
+
+    .layer-tag {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* ====================================================
+       2. BOX-SIZING COMPARISON: content-box vs border-box
+       ==================================================== */
+    .comparison-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 100%;
+    }
+
+    .comparison-card h2 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #2d3436;
+    }
+
+    .comparison-card > p {
+      text-align: center;
+      font-size: 14px;
+      color: #636e72;
+      margin-bottom: 30px;
+    }
+
+    .box-compare-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .demo-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 320px;
+    }
+
+    .demo-column h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    /* Box A: Default content-box */
+    .box-content-box {
+      box-sizing: content-box;
+      width: 200px;
+      padding: 20px;
+      border: 8px solid #e74c3c;
+      background-color: #fadbd8;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* Box B: border-box */
+    .box-border-box {
+      box-sizing: border-box;
+      width: 200px;
+      padding: 20px;
+      border: 8px solid #27ae60;
+      background-color: #d5f5e3;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .calc-box {
+      margin-top: 14px;
+      font-size: 12px;
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      padding: 10px;
+      border-radius: 6px;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CSS Box Model Exploration</h1>
+    <p>Visualizing Margin, Border, Padding, Content, and comparing Box-Sizing behavior</p>
+  </header>
+
+  <main class="main-wrapper">
+
+    <!-- Concentric Layers Diagram -->
+    <section class="concentric-card">
+      <h2>1. The Four Box Model Layers</h2>
+
+      <!-- Margin -->
+      <div class="layer-margin">
+        <span class="layer-tag" style="color: #d35400;">Margin Layer (External Spacing)</span>
+
+        <!-- Border -->
+        <div class="layer-border">
+          <span class="layer-tag" style="color: #b7791f;">Border Layer (8px Solid)</span>
+
+          <!-- Padding -->
+          <div class="layer-padding">
+            <span class="layer-tag" style="color: #27ae60;">Padding Layer (20px Internal Space)</span>
+
+            <!-- Content -->
+            <div class="layer-content">
+              Content Area
+              <div style="font-size: 11px; font-weight: normal; margin-top: 4px;">Text &amp; Media</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Box-Sizing Comparison -->
+    <section class="comparison-card">
+      <h2>2. Content-Box vs Border-Box Comparison</h2>
+      <p>Both boxes have CSS <code>width: 200px</code>, <code>padding: 20px</code>, and <code>border: 8px</code></p>
+
+      <div class="box-compare-row">
+
+        <!-- Column 1: content-box -->
+        <div class="demo-column">
+          <h3>content-box (Default)</h3>
+          <div class="box-content-box">
+            Rendered Box
+          </div>
+          <div class="calc-box">
+            <strong>Formula:</strong> Width + (Padding &times; 2) + (Border &times; 2)<br>
+            <strong>Total Rendered Width:</strong><br>
+            200px + 40px + 16px = <strong style="color: #c0392b;">256px</strong><br>
+            <em>The box grows larger than the declared 200px.</em>
+          </div>
+        </div>
+
+        <!-- Column 2: border-box -->
+        <div class="demo-column">
+          <h3>border-box</h3>
+          <div class="box-border-box">
+            Rendered Box
+          </div>
+          <div class="calc-box">
+            <strong>Formula:</strong> Declared width includes padding &amp; border.<br>
+            <strong>Total Rendered Width:</strong><br>
+            Exactly <strong style="color: #27ae60;">200px</strong><br>
+            <em>Content automatically compresses to 144px to fit.</em>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 8</p>
+  </footer>
+
+</body>
+</html>

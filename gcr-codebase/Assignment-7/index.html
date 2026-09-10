@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 7 - CSS Practice (Lectures 16-18)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #2c3e50;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #1a365d;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: #4a5568;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      border-color: #3182ce;
+    }
+
+    .card .q-num {
+      font-size: 12px;
+      font-weight: bold;
+      color: #3182ce;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.5;
+      margin-top: auto;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #a0aec0;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Assignment 7 &bull; Lectures 16-18</h1>
+      <p>HTML5 &amp; CSS Practice &bull; Single-file solutions with embedded CSS</p>
+    </header>
+
+    <main>
+      <div class="grid">
+
+        <a href="question1.html" class="card">
+          <span class="q-num">Question 1</span>
+          <h2>Borders &amp; Padding</h2>
+          <p>Solid, dashed, double, and groove borders with border-radius and smooth hover transitions.</p>
+        </a>
+
+        <a href="question2.html" class="card">
+          <span class="q-num">Question 2</span>
+          <h2>Height &amp; Width Layout</h2>
+          <p>Sizing with px, %, vh, em units, min-height, max-width, overflow, and flexbox centering.</p>
+        </a>
+
+        <a href="question3.html" class="card">
+          <span class="q-num">Question 3</span>
+          <h2>Gradient Backgrounds</h2>
+          <p>Linear and radial gradients with fixed header, footer, and parallax-like fixed attachment.</p>
+        </a>
+
+        <a href="question4.html" class="card">
+          <span class="q-num">Question 4</span>
+          <h2>Shadows &amp; Depth</h2>
+          <p>Text-shadow on headings, varied box-shadows, and smooth hover lift animations.</p>
+        </a>
+
+        <a href="question5.html" class="card">
+          <span class="q-num">Question 5</span>
+          <h2>Advanced Selectors</h2>
+          <p>Attribute selectors, pseudo-classes (:hover, :nth-child), pseudo-elements, and combinators.</p>
+        </a>
+
+        <a href="question6.html" class="card">
+          <span class="q-num">Question 6</span>
+          <h2>CSS Transformations</h2>
+          <p>rotate(), scale(), translateY(), and skewX() hover animations with descriptive labels.</p>
+        </a>
+
+        <a href="question7.html" class="card">
+          <span class="q-num">Question 7</span>
+          <h2>Typography &amp; Text Styling</h2>
+          <p>Font pairing, weights, line-height, letter-spacing, custom &lt;mark&gt;, and drop-caps.</p>
+        </a>
+
+        <a href="question8.html" class="card">
+          <span class="q-num">Question 8</span>
+          <h2>Box Model Exploration</h2>
+          <p>Visual concentric layers and side-by-side comparison of content-box vs border-box.</p>
+        </a>
+
+        <a href="question9.html" class="card">
+          <span class="q-num">Question 9</span>
+          <h2>Outline &amp; Focus Form</h2>
+          <p>Form controls showing solid, dashed, dotted, and double outline-offset styling on :focus.</p>
+        </a>
+
+        <a href="question10.html" class="card">
+          <span class="q-num">Question 10</span>
+          <h2>Responsive Navbar</h2>
+          <p>5-link navigation bar with active state, hover transitions, and mobile vertical collapse below 700px.</p>
+        </a>
+
+      </div>
+    </main>
+
+    <footer>
+      <p>BridgeLabz Training &bull; Web Development &bull; Assignment 7</p>
+    </footer>
+  </div>
+
+</body>
+</html>

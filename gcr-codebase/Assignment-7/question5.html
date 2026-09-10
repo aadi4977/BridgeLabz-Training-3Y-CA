@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 5 - Advanced CSS Selectors Demo</title>
+  <style>
+    /* Global Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      color: #2f3640;
+      padding: 30px 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 25px;
+      color: #192a56;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #718093;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .demo-card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid #00a8ff;
+    }
+
+    .demo-card h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #273c75;
+    }
+
+    /* -------------------------------------------------------------
+       1. ATTRIBUTE SELECTORS
+       Targets elements based on the presence or value of attributes
+       ------------------------------------------------------------- */
+
+    /* Matches only inputs with type="text" */
+    input[type="text"] {
+      width: 100%;
+      max-width: 380px;
+      padding: 9px 12px;
+      border: 2px solid #718093;
+      border-radius: 5px;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* Matches hyperlinks whose href begins with "https" */
+    a[href^="https"] {
+      color: #27ae60;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    /* -------------------------------------------------------------
+       2. PSEUDO-CLASSES (:hover, :focus, :nth-child)
+       Targets elements based on their state or tree position
+       ------------------------------------------------------------- */
+
+    /* :focus pseudo-class changes styling when input is clicked/active */
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #00a8ff;
+      background-color: #f0faff;
+    }
+
+    /* :hover pseudo-class activates when pointer passes over */
+    .styled-list li:hover {
+      background-color: #e3f2fd;
+      color: #0c2461;
+      padding-left: 12px;
+      cursor: pointer;
+    }
+
+    /* :nth-child() selects items based on algebraic formula or even/odd */
+    .styled-list li:nth-child(even) {
+      background-color: #f1f2f6;
+    }
+
+    /* Specific nth-child highlight for item 3 */
+    .styled-list li:nth-child(3) {
+      font-weight: 600;
+      border-left: 3px solid #e67e22;
+    }
+
+    /* -------------------------------------------------------------
+       3. PSEUDO-ELEMENTS (::before, ::after)
+       Inserts cosmetic content before or after an element
+       ------------------------------------------------------------- */
+
+    /* ::before inserts an icon badge before list items */
+    .styled-list li {
+      padding: 8px 10px;
+      list-style-type: none;
+      transition: all 0.2s ease;
+      margin-bottom: 4px;
+      border-radius: 4px;
+    }
+
+    .styled-list li::before {
+      content: "\25B6 "; /* Unicode right triangle */
+      color: #00a8ff;
+      font-size: 11px;
+      margin-right: 6px;
+    }
+
+    /* ::after adds a security note after https links */
+    a[href^="https"]::after {
+      content: " [Secure SSL]";
+      font-size: 11px;
+      color: #2ecc71;
+      font-weight: normal;
+    }
+
+    /* -------------------------------------------------------------
+       4. COMBINATORS (descendant, child >, adjacent +, general ~)
+       Selects elements according to relationships in the DOM tree
+       ------------------------------------------------------------- */
+
+    /* Descendant combinator (space): matches all <p> anywhere inside .combinator-box */
+    .combinator-box p {
+      color: #576574;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    /* Child combinator (>): matches ONLY direct child <li> of .strict-parent */
+    .strict-parent > li {
+      color: #2c3e50;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    /* Adjacent sibling combinator (+): matches the first <p> immediately after <h3> */
+    .combinator-box h3 + p {
+      background-color: #fff3cd;
+      border-left: 3px solid #f39c12;
+      padding: 6px 10px;
+      font-weight: 500;
+      color: #856404;
+    }
+
+    /* General sibling combinator (~): matches all following sibling <p class="extra"> */
+    .combinator-box h3 ~ p.extra {
+      text-decoration: underline dotted #00a8ff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Advanced CSS Selectors Showcase</h1>
+    <p>Demonstrating attribute selectors, pseudo-classes, pseudo-elements, and combinators</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Attribute Selectors Demo -->
+    <section class="demo-card">
+      <h2>1. Attribute Selectors &amp; Focus Pseudo-Class</h2>
+      <p style="font-size: 13px; margin-bottom: 10px;">
+        The input below matches <code>[type="text"]</code>. Click it to trigger <code>:focus</code> styling.
+      </p>
+      <input type="text" placeholder="Type here (styled via [type='text'])">
+
+      <p style="font-size: 13px; margin-top: 10px; margin-bottom: 6px;">
+        Links matching <code>[href^="https"]</code> get styled in green with a <code>::after</code> badge:
+      </p>
+      <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="http://example.com" style="color: #95a5a6; font-size: 13px;">Insecure Link (http://)</a>
+    </section>
+
+    <!-- Pseudo-classes and Pseudo-elements Demo -->
+    <section class="demo-card">
+      <h2>2. Pseudo-Classes (:hover, :nth-child) &amp; Pseudo-Elements (::before)</h2>
+      <p style="font-size: 13px; margin-bottom: 10px;">
+        List items use <code>::before</code> for triangle bullets, <code>:nth-child(even)</code> for zebra stripes, and <code>:hover</code> for highlighting:
+      </p>
+      <ul class="styled-list">
+        <li>Item 1: HTML5 Semantic Elements</li>
+        <li>Item 2: CSS Flexbox Architecture (nth-child even)</li>
+        <li>Item 3: CSS Grid System (nth-child 3 with orange border)</li>
+        <li>Item 4: CSS Selectors &amp; Specificity (nth-child even)</li>
+        <li>Item 5: Responsive Web Layouts</li>
+      </ul>
+    </section>
+
+    <!-- Combinators Demo -->
+    <section class="demo-card combinator-box">
+      <h2>3. CSS Combinators (&gt;, +, ~, and descendant)</h2>
+
+      <h3>Reference Heading (H3)</h3>
+      <p>This paragraph is an <strong>adjacent sibling (+)</strong> directly following the H3, styled with a yellow background.</p>
+      <p class="extra">This paragraph is a <strong>general sibling (~)</strong> with class .extra, styled with a dotted underline.</p>
+      <p class="extra">Another general sibling (~) paragraph also styled by the rule.</p>
+
+      <div style="margin-top: 15px;">
+        <p><strong>Child Combinator (&gt;) Demonstration:</strong></p>
+        <ul class="strict-parent" style="padding-left: 20px;">
+          <li>Direct Child 1 (Styled with bold dark blue text via &gt;)
+            <ul style="padding-left: 20px; font-weight: normal; font-size: 13px;">
+              <li>Nested item (NOT styled by direct child combinator)</li>
+            </ul>
+          </li>
+          <li>Direct Child 2 (Styled with bold dark blue text via &gt;)</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 5</p>
+  </footer>
+
+</body>
+</html>

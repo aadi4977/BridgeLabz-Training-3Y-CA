@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 3 - Gradient Background Webpage</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      /* Padding top and bottom prevents fixed header and footer from covering page content */
+      padding-top: 55px;
+      padding-bottom: 40px;
+    }
+
+    /* Fixed Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 55px;
+      background-color: #11141a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 25px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    header .logo {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: #00d2d3;
+    }
+
+    header nav a {
+      color: #e0e0e0;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    header nav a:hover {
+      color: #00d2d3;
+    }
+
+    /* Section 1: Linear Gradient Background */
+    .linear-section {
+      min-height: 85vh;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #00d2d3 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Section 2: Radial Gradient Background with Fixed Attachment (Parallax-like) */
+    .radial-section {
+      min-height: 95vh;
+      background: radial-gradient(circle at center, #ff7e5f 0%, #feb47b 60%, #eb4d4b 100%);
+      background-attachment: fixed; /* Creates parallax-like background effect on scroll */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Info card container inside sections */
+    .info-card {
+      background-color: rgba(17, 20, 26, 0.75);
+      max-width: 650px;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      line-height: 1.6;
+    }
+
+    .info-card h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .info-card p {
+      font-size: 15px;
+      color: #d1d8e0;
+      margin-bottom: 14px;
+    }
+
+    .info-card code {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      color: #f1c40f;
+    }
+
+    /* Fixed Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background-color: #11141a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      color: #95afc0;
+      z-index: 1000;
+      border-top: 1px solid #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Header -->
+  <header>
+    <div class="logo">CSS Gradients Showcase</div>
+    <nav>
+      <a href="#linear">Linear Gradient</a>
+      <a href="#radial">Radial Gradient</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section 1: Linear Gradient -->
+    <section id="linear" class="linear-section">
+      <div class="info-card">
+        <h2>Linear Gradient Section</h2>
+        <p>
+          A linear gradient transitions smoothly between two or more colors along a straight directional line.
+        </p>
+        <p>
+          This section uses <code>linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #00d2d3 100%)</code>. The 135-degree angle pushes colors diagonally from top-left to bottom-right, creating depth and visual interest.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 2: Radial Gradient with Parallax Attachment -->
+    <section id="radial" class="radial-section">
+      <div class="info-card">
+        <h2>Radial Gradient Section (Fixed Attachment)</h2>
+        <p>
+          A radial gradient originates from an inner focal point and radiates outwards in circular or elliptical bands.
+        </p>
+        <p>
+          This section uses <code>radial-gradient(circle at center, #ff7e5f, #feb47b, #eb4d4b)</code> combined with <code>background-attachment: fixed;</code>.
+        </p>
+        <p>
+          As you scroll up and down, notice how this card glides over the gradient while the background remains pinned to the viewport, producing a smooth parallax sensation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fixed Footer -->
+  <footer>
+    <p>CSS Assignment 7 &bull; Lecture 16-18 &bull; Question 3</p>
+  </footer>
+
+</body>
+</html>
