@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Assignment 3 - ES6 Features & Debugging Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 30px 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #334155;
+    }
+    header h1 {
+      font-size: 28px;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+    header p {
+      font-size: 15px;
+      color: #94a3b8;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .btn-run-all {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-run-all:hover {
+      background: #0369a1;
+    }
+    .btn-clear {
+      background: #334155;
+      color: #f1f5f9;
+      border: none;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-clear:hover {
+      background: #475569;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+    .card h3 {
+      font-size: 16px;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .card button {
+      background: #0ea5e9;
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .card button:hover {
+      background: #0284c7;
+    }
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #090d16;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-bottom: none;
+    }
+    .console-box {
+      background: #020617;
+      color: #4ade80;
+      font-family: "Cascadia Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 18px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border: 1px solid #334155;
+      min-height: 300px;
+      max-height: 600px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>JavaScript Assignment 3 - ES Features & Debugging</h1>
+      <p>ES6 Features, Hoisting, Scope, Strict Mode, Custom Errors, JSON Audit & Debugging</p>
+    </header>
+
+    <div class="actions">
+      <button class="btn-run-all" onclick="runAll()">Run All 10 Questions</button>
+      <button class="btn-clear" onclick="clearConsole()">Clear Console Output</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Q1. Dynamic Data Parser</h3>
+        <p>Type coercion audits, filtering invalid numbers (NaN, whitespace, 100px), and valid vs invalid array classification.</p>
+        <button onclick="runScript('question1.js')">Run Question 1</button>
+      </div>
+
+      <div class="card">
+        <h3>Q2. Employee Bonus Calculator</h3>
+        <p>Type casting, conditional bonus tiers (> 3 years), "use strict" validation, template literals, and try...catch guards.</p>
+        <button onclick="runScript('question2.js')">Run Question 2</button>
+      </div>
+
+      <div class="card">
+        <h3>Q3. Transaction Validator</h3>
+        <p>Custom Error classes (NegativeAmountError, MissingFieldError, NullEntryError), transaction categorization & breakpoint hooks.</p>
+        <button onclick="runScript('question3.js')">Run Question 3</button>
+      </div>
+
+      <div class="card">
+        <h3>Q4. Debugging Mystery</h3>
+        <p>Strict mode undeclared global error reproduction, local scope resolution refactor, and VS Code Call Stack / Watch guide.</p>
+        <button onclick="runScript('question4.js')">Run Question 4</button>
+      </div>
+
+      <div class="card">
+        <h3>Q5. Hoisting Lab: Sequence Trap</h3>
+        <p>Memory creation vs execution phases for var, functions, and TDZ on let. Comparison with Arrow function hoisting.</p>
+        <button onclick="runScript('question5.js')">Run Question 5</button>
+      </div>
+
+      <div class="card">
+        <h3>Q6. Pyramid Pattern Generator</h3>
+        <p>Nested loops with default arguments, let vs var scoping collisions, variable re-use tracking, and strict mode loop catch.</p>
+        <button onclick="runScript('question6.js')">Run Question 6</button>
+      </div>
+
+      <div class="card">
+        <h3>Q7. Smart Calculator</h3>
+        <p>Switch dispatch, custom errors for divide by 0 and negative root, InvalidOperationError, and formatted audit report.</p>
+        <button onclick="runScript('question7.js')">Run Question 7</button>
+      </div>
+
+      <div class="card">
+        <h3>Q8. Strict Mode Showdown</h3>
+        <p>Non-strict vs strict comparisons: duplicate parameters (a, a), implicit globals, and deleting unqualified identifiers.</p>
+        <button onclick="runScript('question8.js')">Run Question 8</button>
+      </div>
+
+      <div class="card">
+        <h3>Q9. JSON Audit Pipeline</h3>
+        <p>JSON parsing with line numbers, detecting malformed JSON and missing keys, control flow tracing, and bonus minor filter.</p>
+        <button onclick="runScript('question9.js')">Run Question 9</button>
+      </div>
+
+      <div class="card">
+        <h3>Q10. Nested Hoisting & Closures</h3>
+        <p>Execution contexts, nested variable shadowing, arrow function closure resolution, and call stack lifecycle walkthrough.</p>
+        <button onclick="runScript('question10.js')">Run Question 10</button>
+      </div>
+    </div>
+
+    <div class="console-header">
+      <span>Console Output Terminal</span>
+      <span id="statusIndicator">Ready</span>
+    </div>
+    <div class="console-box" id="outputConsole">Press "Run All 10 Questions" or select an individual question card above...</div>
+  </div>
+
+  <script>
+    const outputConsole = document.getElementById("outputConsole");
+    const statusIndicator = document.getElementById("statusIndicator");
+
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalTable = console.table;
+
+    function logToUI(...args) {
+      originalLog.apply(console, args);
+      const message = args.map(arg => {
+        if (arg === null) return "null";
+        if (arg === undefined) return "undefined";
+        if (typeof arg === "object") {
+          try {
+            return JSON.stringify(arg, null, 2);
+          } catch(e) {
+            return String(arg);
+          }
+        }
+        return String(arg);
+      }).join(" ");
+      outputConsole.textContent += message + "\n";
+      outputConsole.scrollTop = outputConsole.scrollHeight;
+    }
+
+    function errorToUI(...args) {
+      originalError.apply(console, args);
+      const message = args.map(arg => String(arg)).join(" ");
+      outputConsole.textContent += message + "\n";
+      outputConsole.scrollTop = outputConsole.scrollHeight;
+    }
+
+    console.log = logToUI;
+    console.error = errorToUI;
+
+    function clearConsole() {
+      outputConsole.textContent = "";
+      statusIndicator.textContent = "Cleared";
+    }
+
+    function runScript(fileName) {
+      clearConsole();
+      statusIndicator.textContent = `Running ${fileName}...`;
+      logToUI(`>>> Executing ${fileName}...\n`);
+      fetch(fileName)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+          return res.text();
+        })
+        .then(code => {
+          new Function(code)();
+          statusIndicator.textContent = `Completed ${fileName}`;
+        })
+        .catch(err => {
+          logToUI(`Error executing ${fileName}: ${err.message}`);
+          statusIndicator.textContent = `Error in ${fileName}`;
+        });
+    }
+
+    function runAll() {
+      clearConsole();
+      statusIndicator.textContent = "Running all questions...";
+      const files = [
+        "question1.js", "question2.js", "question3.js", "question4.js", "question5.js",
+        "question6.js", "question7.js", "question8.js", "question9.js", "question10.js"
+      ];
+      
+      let p = Promise.resolve();
+      files.forEach((f, idx) => {
+        p = p.then(() => {
+          logToUI(`\n====================================================================`);
+          logToUI(`>>> [${idx + 1}/10] EXECUTING: ${f}`);
+          logToUI(`====================================================================`);
+          return fetch(f)
+            .then(res => res.text())
+            .then(code => {
+              new Function(code)();
+            });
+        });
+      });
+
+      p.then(() => {
+        statusIndicator.textContent = "All questions finished successfully!";
+      }).catch(err => {
+        logToUI(`Execution halted on error: ${err.message}`);
+        statusIndicator.textContent = "Execution halted";
+      });
+    }
+  </script>
+</body>
+</html>
