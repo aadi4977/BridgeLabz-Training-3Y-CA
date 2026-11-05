@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q10 - Responsive Dashboard Summary</title>
+  <link rel="stylesheet" href="responsive-dashboard-summary.css">
+</head>
+<body>
+  <!-- CSS Grid Dashboard Grid Container (Header, Sidebar, Main) -->
+  <div class="dashboard-grid">
+    <!-- Header Area -->
+    <header class="dash-header">
+      <div class="header-brand">
+        <span class="brand-badge">&#x1F4CA;</span>
+        <h1>Responsive CSS Executive Dashboard</h1>
+      </div>
+      <div class="header-user">
+        <a href="index.html" class="hub-link">&larr; Return to Assignment Index</a>
+        <div class="user-pill">
+          <span class="user-avatar">AD</span>
+          <span class="user-name">Student Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar Area (Shifts to top on < 750px) -->
+    <aside class="dash-sidebar" aria-label="Dashboard Navigation">
+      <div class="sidebar-block">
+        <h2 class="sidebar-heading">Navigation</h2>
+        <nav class="sidebar-nav">
+          <a href="#overview" class="side-link active">&#x1F4D6; Overview</a>
+          <a href="#filters-card" class="side-link">&#x1F3A8; CSS Filters</a>
+          <a href="#typography-card" class="side-link">&#x1F524; Fluid Typography</a>
+          <a href="#mediaqueries-card" class="side-link">&#x1F4F1; Media Queries</a>
+          <a href="#cheatsheet-card" class="side-link">&#x1F4DD; Cheat Sheets</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-block status-widget">
+        <h2 class="sidebar-heading">Viewport Status</h2>
+        <div class="status-indicator">
+          <span class="live-dot"></span>
+          <span class="status-text">Dynamic Grid Active</span>
+        </div>
+        <p class="status-caption">Auto-adapts between sidebar layout (&gt;750px) and top horizontal toolbar (&le;750px).</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area with cards -->
+    <main class="dash-main" id="overview">
+      <div class="dash-banner">
+        <h2>Responsive Design Metrics &amp; Tooling</h2>
+        <p>Interactive dashboard modules providing real-time overview of CSS responsive primitives.</p>
+      </div>
+
+      <!-- Dashboard Cards Grid -->
+      <section class="cards-layout" aria-label="Dashboard Feature Cards">
+        <!-- Card 1: Filters -->
+        <article class="dash-card" id="filters-card">
+          <div class="card-icon-wrap icon-filters">&#x1F3A8;</div>
+          <div class="card-meta">
+            <span class="card-tag">Visual Processing</span>
+            <h3>CSS Filters Engine</h3>
+          </div>
+          <p class="card-text">
+            Transforms visual textures via hardware shaders. Supports real-time blur, sepia, grayscale, brightness, contrast, and hue rotation without modifying raw source assets.
+          </p>
+          <div class="card-stat">
+            <span class="stat-number">6+</span>
+            <span class="stat-label">Core Filter Functions</span>
+          </div>
+          <a href="responsive-image-filter-gallery.html" class="card-action-btn">Launch Filter Gallery &rarr;</a>
+        </article>
+
+        <!-- Card 2: Typography -->
+        <article class="dash-card" id="typography-card">
+          <div class="card-icon-wrap icon-type">&#x1F524;</div>
+          <div class="card-meta">
+            <span class="card-tag">Dynamic Type</span>
+            <h3>Fluid Typography</h3>
+          </div>
+          <p class="card-text">
+            Implements continuous viewport scaling via <code>clamp()</code> functions. Eliminates rigid breakpoints for headings and body paragraphs while guaranteeing accessibility boundaries.
+          </p>
+          <div class="card-stat">
+            <span class="stat-number">clamp()</span>
+            <span class="stat-label">Min / Ideal / Max Formula</span>
+          </div>
+          <a href="responsive-typography.html" class="card-action-btn">Inspect Fluid Type &rarr;</a>
+        </article>
+
+        <!-- Card 3: Media Queries -->
+        <article class="dash-card" id="mediaqueries-card">
+          <div class="card-icon-wrap icon-mq">&#x1F4F1;</div>
+          <div class="card-meta">
+            <span class="card-tag">Adaptive Layouts</span>
+            <h3>CSS Media Queries</h3>
+          </div>
+          <p class="card-text">
+            Calculates ergonomic thresholds across handheld, tablet, and ultra-wide displays. Reconfigures multi-column flex and grid tracks dynamically to preserve visual hierarchy.
+          </p>
+          <div class="card-stat">
+            <span class="stat-number">3 Tier</span>
+            <span class="stat-label">Desktop / Tablet / Mobile</span>
+          </div>
+          <a href="responsive-cards-with-media-queries.html" class="card-action-btn">Test Breakpoints &rarr;</a>
+        </article>
+
+        <!-- Card 4: Cheat Sheet Links -->
+        <article class="dash-card" id="cheatsheet-card">
+          <div class="card-icon-wrap icon-docs">&#x1F4DD;</div>
+          <div class="card-meta">
+            <span class="card-tag">Documentation</span>
+            <h3>Cheat Sheet Links</h3>
+          </div>
+          <p class="card-text">
+            Production reference compendium containing copy-ready code snippets for Grid repeat auto-fit, Flexbox centering, CSS transitions, and keyframe animations.
+          </p>
+          <div class="card-stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Semantic HTML5 &amp; CSS</span>
+          </div>
+          <a href="responsive-css-cheat-sheet.html" class="card-action-btn">Open Cheat Sheet &rarr;</a>
+        </article>
+      </section>
+    </main>
+
+    <!-- Semantic Footer inside Dashboard -->
+    <footer class="dash-footer">
+      <p>&copy; 2026 Responsive Web Design Assignment 9 | Q10: Responsive Dashboard Summary</p>
+    </footer>
+  </div>
+</body>
+</html>

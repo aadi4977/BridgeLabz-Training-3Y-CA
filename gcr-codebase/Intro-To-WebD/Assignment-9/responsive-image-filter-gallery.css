@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Question 1: Responsive Image Filter Gallery
+   Stylesheet: responsive-image-filter-gallery.css
+   ========================================================================== */
+
+/* Universal Reset & Box Sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page Body Styling */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styling */
+.page-header {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-bottom: 1px solid #334155;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+.page-header .subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.nav-links .nav-btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #334155;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-links .nav-btn:hover {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-info {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-info h2 {
+  font-size: 1.75rem;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+.section-info p {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   CSS Grid Gallery Layout
+   Requirement: repeat(auto-fit, minmax(200px, 1fr))
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Gallery Figure Card */
+.gallery-item {
+  background-color: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+}
+
+/* Image Wrapper with fixed aspect ratio */
+.img-wrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: #0b1120;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Smooth transition for filter removal and subtle scale on hover */
+  transition: filter 0.45s ease-in-out, transform 0.45s ease-in-out;
+}
+
+/* ==========================================================================
+   Filter Applications (blur, grayscale, sepia, brightness, contrast, hue-rotate)
+   ========================================================================== */
+.filter-blur img {
+  filter: blur(4px);
+}
+
+.filter-grayscale img {
+  filter: grayscale(100%);
+}
+
+.filter-sepia img {
+  filter: sepia(100%);
+}
+
+.filter-brightness img {
+  filter: brightness(160%);
+}
+
+.filter-contrast img {
+  filter: contrast(220%);
+}
+
+.filter-hue img {
+  filter: hue-rotate(90deg);
+}
+
+/* On hover, smoothly remove all filter effects */
+.gallery-item:hover img {
+  filter: none;
+  transform: scale(1.06);
+}
+
+/* Image Captions (Figcaption) */
+.gallery-item figcaption {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.filter-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  margin-bottom: 0.35rem;
+}
+
+.gallery-item figcaption h3 {
+  font-size: 1.15rem;
+  color: #f8fafc;
+}
+
+.gallery-item figcaption p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* Semantic Footer */
+.page-footer {
+  background-color: #0b1120;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  padding: 1.5rem;
+  color: #64748b;
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Responsive Breakpoint
+   Requirement: Stack all images in one column when screen width is below 600px
+   ========================================================================== */
+@media (max-width: 600px) {
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Stack into single column */
+    gap: 1.5rem;
+  }
+
+  .img-wrapper {
+    height: 240px;
+  }
+}

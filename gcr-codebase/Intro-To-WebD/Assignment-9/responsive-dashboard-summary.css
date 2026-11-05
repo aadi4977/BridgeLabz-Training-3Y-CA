@@ -1,0 +1,440 @@
+/* ==========================================================================
+   Question 10: Responsive Dashboard Summary
+   Stylesheet: responsive-dashboard-summary.css
+   ========================================================================== */
+
+/* Universal Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Body Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #0b1120;
+  color: #f1f5f9;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Page Load Keyframe Animation
+   Requirement: Include a simple load animation using @keyframes
+   ========================================================================== */
+@keyframes dashboardFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   CSS Grid Master Dashboard Layout
+   Requirement: Layout includes Header, Sidebar, and Main Content using CSS Grid
+   ========================================================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  /* Load animation */
+  animation: dashboardFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Header Area (grid-area: header) */
+.dash-header {
+  grid-area: header;
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-badge {
+  font-size: 1.6rem;
+}
+
+.dash-header h1 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hub-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  background-color: #1e293b;
+  border-radius: 9999px;
+  border: 1px solid #334155;
+  transition: all 0.25s ease;
+}
+
+.hub-link:hover {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #1e293b;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid #334155;
+}
+
+.user-avatar {
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.75rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* ==========================================================================
+   Sidebar Area (grid-area: sidebar)
+   ========================================================================== */
+.dash-sidebar {
+  grid-area: sidebar;
+  background-color: #0f172a;
+  border-right: 1px solid #1e293b;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.8px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.side-link {
+  display: block;
+  text-decoration: none;
+  color: #94a3b8;
+  font-size: 0.925rem;
+  font-weight: 500;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.side-link:hover,
+.side-link.active {
+  color: #38bdf8;
+  background-color: #1e293b;
+  border-left: 3px solid #38bdf8;
+}
+
+.status-widget {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: auto;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #34d399;
+  box-shadow: 0 0 8px #34d399;
+}
+
+.status-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.status-caption {
+  font-size: 0.775rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Main Content Area (grid-area: main)
+   Requirement: Contains cards for Filters, Typography, Media Queries, Cheat Sheet
+   ========================================================================== */
+.dash-main {
+  grid-area: main;
+  background-color: #0b1120;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dash-banner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  padding: 2rem;
+}
+
+.dash-banner h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.dash-banner p {
+  color: #94a3b8;
+  font-size: 0.975rem;
+}
+
+/* Cards Layout inside Main */
+.cards-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+/* ==========================================================================
+   Dashboard Feature Card
+   Requirement: On hover, each card scales up slightly with a shadow effect
+   ========================================================================== */
+.dash-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  /* Smooth transitions for scaling and shadow effect */
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+/* Requirement: Hover scaling and shadow */
+.dash-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 32px rgba(56, 189, 248, 0.18);
+  border-color: #38bdf8;
+}
+
+.card-icon-wrap {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.dash-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.65rem;
+}
+
+.card-text {
+  font-size: 0.925rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.dash-card code {
+  font-family: monospace;
+  background-color: #0f172a;
+  color: #34d399;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.card-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  border-top: 1px solid #334155;
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.stat-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #38bdf8;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-action-btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.dash-card:hover .card-action-btn {
+  background-color: #38bdf8;
+  color: #0b1120;
+  border-color: #38bdf8;
+}
+
+/* Footer Area (grid-area: footer) */
+.dash-footer {
+  grid-area: footer;
+  background-color: #070d19;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  padding: 1.25rem 2rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoint: Below 750px
+   Requirement: Below 750 px, the sidebar shifts to the top and the content stacks below it
+   ========================================================================== */
+@media (max-width: 750px) {
+  .dashboard-grid {
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  .dash-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.25rem 1rem;
+  }
+
+  .header-user {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Sidebar shifts to top as horizontal navbar */
+  .dash-sidebar {
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .side-link {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .side-link:hover,
+  .side-link.active {
+    border-left: none;
+    border-bottom: 2px solid #38bdf8;
+  }
+
+  .status-widget {
+    display: none; /* Collapsed on mobile for clean screen estate */
+  }
+
+  .dash-main {
+    padding: 1.75rem 1rem;
+  }
+
+  .cards-layout {
+    grid-template-columns: 1fr; /* Single column stack */
+    gap: 1.25rem;
+  }
+}

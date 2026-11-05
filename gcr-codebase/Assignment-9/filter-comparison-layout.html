@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q8 - Filter Comparison Layout</title>
+  <link rel="stylesheet" href="filter-comparison-layout.css">
+</head>
+<body>
+  <!-- Semantic Header -->
+  <header class="header">
+    <div class="header-container">
+      <h1>Before &amp; After Filter Comparison</h1>
+      <p>Side-by-side photographic comparison demonstrating non-destructive CSS image enhancements and smooth hover dissipation.</p>
+      <nav class="nav">
+        <a href="index.html" class="nav-button">&larr; Assignment Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Semantic Main Area -->
+  <main class="main-content">
+    <section class="comparison-section" aria-label="Image Filter Comparison">
+      <div class="instruction-banner">
+        <p><strong>Interactive Demo:</strong> Hover over the right filtered image to smoothly fade the CSS filter back to natural exposure.</p>
+      </div>
+
+      <!-- Side-by-side comparison container (desktop) / vertical stack (< 700px) -->
+      <div class="comparison-container">
+        <!-- Left Image: Original Unfiltered -->
+        <figure class="comparison-card original-card">
+          <div class="badge-tag natural-tag">Original (No Filter)</div>
+          <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=700&q=80" 
+                 alt="Mountain peaks at sunrise - natural unfiltered photograph">
+          </div>
+          <figcaption class="card-caption">
+            <h3>Standard Raw Exposure</h3>
+            <p>Natural unmodified dynamic range and neutral color temperature straight from the camera sensor.</p>
+            <span class="css-rule">filter: none;</span>
+          </figcaption>
+        </figure>
+
+        <!-- Right Image: Filter Applied (Contrast & Brightness Enhancement) -->
+        <figure class="comparison-card filtered-card">
+          <div class="badge-tag filtered-tag">Enhanced (CSS Filter)</div>
+          <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=700&q=80" 
+                 alt="Mountain peaks at sunrise - enhanced with CSS filter contrast and brightness"
+                 class="filter-target">
+          </div>
+          <figcaption class="card-caption">
+            <h3>Dramatic High Contrast</h3>
+            <p>Deepened shadow tones and intensified highlights for vivid visual impact. Hover to reveal original.</p>
+            <span class="css-rule">filter: contrast(180%) brightness(110%);</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- Semantic Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q8: Filter Comparison Layout</p>
+  </footer>
+</body>
+</html>

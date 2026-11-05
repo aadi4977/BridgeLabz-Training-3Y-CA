@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q1 - Responsive Image Filter Gallery</title>
+  <link rel="stylesheet" href="responsive-image-filter-gallery.css">
+</head>
+<body>
+  <!-- Semantic Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1>Responsive Image Filter Gallery</h1>
+      <p class="subtitle">Demonstrating CSS Grid layout with interactive CSS image filters and smooth transitions</p>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-btn">&larr; Back to Assignment Index</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Semantic Main Area -->
+  <main class="main-content">
+    <section class="gallery-section" aria-label="Filtered Image Gallery">
+      <div class="section-info">
+        <h2>CSS Filter Showcase</h2>
+        <p>Each image below demonstrates a unique CSS filter. Hover over any image to smoothly remove the filter effect.</p>
+      </div>
+
+      <!-- CSS Grid Gallery Container -->
+      <div class="gallery-grid">
+        <!-- Image 1: Blur Filter -->
+        <figure class="gallery-item filter-blur">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" 
+                 alt="Misty mountain landscape" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: blur(4px)</span>
+            <h3>Alpine Lake</h3>
+            <p>Applies a Gaussian blur to soften the image details.</p>
+          </figcaption>
+        </figure>
+
+        <!-- Image 2: Grayscale Filter -->
+        <figure class="gallery-item filter-grayscale">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" 
+                 alt="Snow covered peaks under starlight" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: grayscale(100%)</span>
+            <h3>Midnight Peaks</h3>
+            <p>Converts the image into a clean monochrome black-and-white tone.</p>
+          </figcaption>
+        </figure>
+
+        <!-- Image 3: Sepia Filter -->
+        <figure class="gallery-item filter-sepia">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" 
+                 alt="Foggy forest morning" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: sepia(100%)</span>
+            <h3>Enchanted Forest</h3>
+            <p>Imparts a vintage, warm reddish-brown nostalgic aesthetic.</p>
+          </figcaption>
+        </figure>
+
+        <!-- Image 4: Brightness Filter -->
+        <figure class="gallery-item filter-brightness">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&q=80" 
+                 alt="Sunlit green valley" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: brightness(150%)</span>
+            <h3>Sunlit Meadow</h3>
+            <p>Enhances luminous exposure, brightening highlight and midtone values.</p>
+          </figcaption>
+        </figure>
+
+        <!-- Image 5: Contrast Filter -->
+        <figure class="gallery-item filter-contrast">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=600&q=80" 
+                 alt="Dense woodland illuminated by sunlight" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: contrast(200%)</span>
+            <h3>Deep Woods</h3>
+            <p>Deepens the separation between shadows and vibrant light regions.</p>
+          </figcaption>
+        </figure>
+
+        <!-- Image 6: Hue-Rotate Filter -->
+        <figure class="gallery-item filter-hue">
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=600&q=80" 
+                 alt="Sun setting behind mountains" 
+                 loading="lazy">
+          </div>
+          <figcaption>
+            <span class="filter-tag">filter: hue-rotate(90deg)</span>
+            <h3>Sunset Canyon</h3>
+            <p>Rotates all color hues 90 degrees along the color wheel spectrum.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- Semantic Footer -->
+  <footer class="page-footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q1: Responsive Image Filter Gallery</p>
+  </footer>
+</body>
+</html>

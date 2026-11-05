@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 9 - Responsive CSS Hub</title>
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #0b1120;
+      color: #f1f5f9;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-bottom: 1px solid #1e293b;
+      padding: 3.5rem 1.5rem 3rem;
+      text-align: center;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #38bdf8;
+      background-color: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    header p {
+      color: #94a3b8;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 750px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .instructions-card {
+      max-width: 850px;
+      margin: 1.5rem auto 0;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.25rem 1.75rem;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .instructions-card strong {
+      color: #38bdf8;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .instructions-card ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 0.4rem 1.5rem;
+    }
+
+    .instructions-card li::before {
+      content: "✔ ";
+      color: #34d399;
+      font-weight: bold;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Question Cards */
+    .q-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .q-card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+      box-shadow: 0 16px 32px rgba(56, 189, 248, 0.15);
+    }
+
+    .q-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .q-num {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background-color: rgba(56, 189, 248, 0.12);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .q-tags {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .q-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .q-desc {
+      font-size: 0.925rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .q-files {
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      font-family: monospace;
+      margin-bottom: 1.25rem;
+    }
+
+    .q-files span {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .q-btn {
+      display: inline-block;
+      text-align: center;
+      padding: 0.7rem 1.25rem;
+      background-color: #38bdf8;
+      color: #0b1120;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .q-btn:hover {
+      background-color: #0ea5e9;
+      transform: scale(1.02);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #070d19;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: #64748b;
+      font-size: 0.875rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      .instructions-card ul {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">Lecture 22-24 Responsive CSS</span>
+    <h1>ASSIGNMENT 9 — Responsive Web Design</h1>
+    <p>Complete suite of 10 hands-on responsive solutions demonstrating CSS Grid, Flexbox, Fluid Typography, Filters, Keyframes, and Media Queries.</p>
+    
+    <div class="instructions-card">
+      <strong>Guaranteed Compliance Checklist:</strong>
+      <ul>
+        <li>Separate HTML &amp; CSS for every question</li>
+        <li>100% semantic HTML5 elements used</li>
+        <li>Zero JavaScript or external frameworks</li>
+        <li>Pure Flexbox &amp; CSS Grid layouts</li>
+        <li>Named by Question (no q1.html / q1.css)</li>
+        <li>Accessible contrast, spacing &amp; transitions</li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid-container">
+      <!-- Q1 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 01</span>
+          <span class="q-tags">CSS Grid &bull; Filters</span>
+        </div>
+        <h2 class="q-title">Responsive Image Filter Gallery</h2>
+        <p class="q-desc">Displays six gallery photos in a responsive auto-fit grid. Demonstrates blur, grayscale, sepia, brightness, contrast, and hue-rotate filters with smooth hover transitions and 600px mobile stacking.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-image-filter-gallery.html / .css
+        </div>
+        <a href="responsive-image-filter-gallery.html" class="q-btn">View Question 1 Solution &rarr;</a>
+      </article>
+
+      <!-- Q2 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 02</span>
+          <span class="q-tags">Flexbox &bull; Homepage</span>
+        </div>
+        <h2 class="q-title">Responsive Web Design Layout</h2>
+        <p class="q-desc">Clean homepage layout with a Flexbox header (logo left, nav right), three horizontal feature boxes with hover scale micro-interactions, centered footer, and 750px vertical stack query.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-web-design-layout.html / .css
+        </div>
+        <a href="responsive-web-design-layout.html" class="q-btn">View Question 2 Solution &rarr;</a>
+      </article>
+
+      <!-- Q3 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 03</span>
+          <span class="q-tags">Flexbox &bull; Media Queries</span>
+        </div>
+        <h2 class="q-title">Responsive Cards with Media Queries</h2>
+        <p class="q-desc">Four course cards arranged in a row via Flexbox. Adapts seamlessly: Desktop (4 cols) &rarr; Tablet &le;900px (2 cols) &rarr; Mobile &le;600px (1 col), with interactive background hover transitions.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-cards-with-media-queries.html / .css
+        </div>
+        <a href="responsive-cards-with-media-queries.html" class="q-btn">View Question 3 Solution &rarr;</a>
+      </article>
+
+      <!-- Q4 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 04</span>
+          <span class="q-tags">Clamp() &bull; Typography</span>
+        </div>
+        <h2 class="q-title">Responsive Typography</h2>
+        <p class="q-desc">Fluid headline and body typography powered by CSS <code>clamp()</code> functions. Centrally balanced with margins and dynamic line-height and spacing refinement below 700px.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-typography.html / .css
+        </div>
+        <a href="responsive-typography.html" class="q-btn">View Question 4 Solution &rarr;</a>
+      </article>
+
+      <!-- Q5 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 05</span>
+          <span class="q-tags">Keyframes &bull; Filters</span>
+        </div>
+        <h2 class="q-title">Filter Cards with Animation</h2>
+        <p class="q-desc">Three profile cards built with Flexbox featuring grayscale and sepia image filters, page-load <code>@keyframes</code> fade-in, translateY(-10px) card lifting on hover, and 800px column stacking.</p>
+        <div class="q-files">
+          <span>Files:</span> filter-cards-with-animation.html / .css
+        </div>
+        <a href="filter-cards-with-animation.html" class="q-btn">View Question 5 Solution &rarr;</a>
+      </article>
+
+      <!-- Q6 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 06</span>
+          <span class="q-tags">CSS Grid &bull; Cheat Sheet</span>
+        </div>
+        <h2 class="q-title">Responsive CSS Cheat Sheet</h2>
+        <p class="q-desc">Visual reference summarizing Filters, Media Queries, Responsive Design, and Typography in separate CSS Grid boxes. Switches from 2-3 columns to stacked key-value rows below 700px.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-css-cheat-sheet.html / .css
+        </div>
+        <a href="responsive-css-cheat-sheet.html" class="q-btn">View Question 6 Solution &rarr;</a>
+      </article>
+
+      <!-- Q7 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 07</span>
+          <span class="q-tags">Grid &bull; Flexbox &bull; Combined</span>
+        </div>
+        <h2 class="q-title">Combined Responsive Web Demo</h2>
+        <p class="q-desc">Comprehensive web demo integrating Flexbox navigation, CSS Grid multi-section layout (Gallery, Responsive Explanation, Cheat Sheet Preview), contact footer, fade-in keyframes, and 700px stack.</p>
+        <div class="q-files">
+          <span>Files:</span> combined-responsive-web-demo.html / .css
+        </div>
+        <a href="combined-responsive-web-demo.html" class="q-btn">View Question 7 Solution &rarr;</a>
+      </article>
+
+      <!-- Q8 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 08</span>
+          <span class="q-tags">Filters &bull; Comparison</span>
+        </div>
+        <h2 class="q-title">Filter Comparison Layout</h2>
+        <p class="q-desc">Side-by-side photographic comparison showing original exposure vs high-contrast filter. On hover, the filter fades away smoothly. Automatically stacks vertically with captions below 700px.</p>
+        <div class="q-files">
+          <span>Files:</span> filter-comparison-layout.html / .css
+        </div>
+        <a href="filter-comparison-layout.html" class="q-btn">View Question 8 Solution &rarr;</a>
+      </article>
+
+      <!-- Q9 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 09</span>
+          <span class="q-tags">Grid &bull; Design Principles</span>
+        </div>
+        <h2 class="q-title">Responsive Design Principles Summary</h2>
+        <p class="q-desc">Three Grid boxes showcasing Fluid Layouts, Flexible Media, and Breakpoints with definitions and CSS code examples. Interactive background gradient and text color on hover; stacks below 600px.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-design-principles-summary.html / .css
+        </div>
+        <a href="responsive-design-principles-summary.html" class="q-btn">View Question 9 Solution &rarr;</a>
+      </article>
+
+      <!-- Q10 -->
+      <article class="q-card">
+        <div class="q-top">
+          <span class="q-num">Question 10</span>
+          <span class="q-tags">CSS Grid &bull; Dashboard</span>
+        </div>
+        <h2 class="q-title">Responsive Dashboard Summary</h2>
+        <p class="q-desc">Full dashboard layout using CSS Grid areas (Header, Sidebar, Main, Footer). Main area contains responsive feature cards with hover scale and shadow. Sidebar shifts to top toolbar below 750px.</p>
+        <div class="q-files">
+          <span>Files:</span> responsive-dashboard-summary.html / .css
+        </div>
+        <a href="responsive-dashboard-summary.html" class="q-btn">View Question 10 Solution &rarr;</a>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 BridgeLabz Training | Responsive Web Design Assignment 9 (Lec 22-24)</p>
+  </footer>
+</body>
+</html>

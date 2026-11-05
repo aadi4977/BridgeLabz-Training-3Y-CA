@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Question 8: Filter Comparison Layout
+   Stylesheet: filter-comparison-layout.css
+   ========================================================================== */
+
+/* Universal Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Body Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #0b1120;
+  color: #f1f5f9;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-bottom: 1px solid #334155;
+  padding: 2.75rem 1.5rem;
+  text-align: center;
+}
+
+.header-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #334155;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-button:hover {
+  background-color: #38bdf8;
+  color: #0b1120;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.instruction-banner {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.instruction-banner strong {
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   Side-by-Side Comparison Container (Desktop)
+   Requirement: Two images displayed side-by-side on desktop
+   ========================================================================== */
+.comparison-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+/* Individual Comparison Card */
+.comparison-card {
+  flex: 1;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
+}
+
+/* Badge Tags */
+.badge-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.natural-tag {
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+
+.filtered-tag {
+  background-color: rgba(30, 58, 138, 0.85);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+}
+
+/* Image Box */
+.image-box {
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background-color: #070d19;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Requirement: The right image has a CSS filter applied (brightness/contrast)
+   Requirement: On hover, the filter fades away smoothly
+   ========================================================================== */
+.filter-target {
+  filter: contrast(180%) brightness(115%);
+  /* Smooth transition for filter fading */
+  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.filtered-card:hover .filter-target {
+  filter: none; /* Smoothly removes filter back to natural */
+  transform: scale(1.02);
+}
+
+/* Caption Area */
+.card-caption {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.card-caption h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.card-caption p {
+  font-size: 0.925rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.css-rule {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8rem;
+  color: #34d399;
+  background-color: #0f172a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  margin-top: 0.5rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #070d19;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  padding: 1.5rem;
+  color: #64748b;
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Responsive Breakpoint: Below 700px
+   Requirement: Below 700 px, stack both images vertically with captions
+   ========================================================================== */
+@media (max-width: 700px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  /* Stack both images vertically */
+  .comparison-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .image-box {
+    height: 260px;
+  }
+
+  .card-caption {
+    padding: 1.25rem;
+  }
+}

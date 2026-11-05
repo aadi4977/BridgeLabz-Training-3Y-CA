@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q2 - Responsive Web Design Layout</title>
+  <link rel="stylesheet" href="responsive-web-design-layout.css">
+</head>
+<body>
+  <!-- Header with logo on the left and navigation links on the right using Flexbox -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="site-logo">
+        <span class="logo-mark">&#x2728;</span>
+        <span class="logo-text">FlexCraft</span>
+      </div>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link home-link">&larr; Index</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#features" class="nav-link active">Features</a></li>
+          <li><a href="#contact" class="nav-link cta-link">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-badge">Modern Responsive Architecture</span>
+      <h1>Responsive Flexbox Homepage</h1>
+      <p>Clean, mobile-first design built purely with CSS Flexbox semantics and zero JavaScript.</p>
+    </div>
+  </section>
+
+  <!-- Main Area with three feature boxes arranged horizontally -->
+  <main class="main-content">
+    <section class="features-section" id="features" aria-label="Core Features">
+      <div class="section-heading">
+        <h2>Core Capabilities</h2>
+        <p>Explore our foundational pillars engineered for modern multi-device experiences.</p>
+      </div>
+
+      <!-- Feature Boxes Flex Container -->
+      <div class="features-container">
+        <!-- Feature Box 1 -->
+        <article class="feature-box">
+          <div class="feature-icon">&#x1F4F1;</div>
+          <h3>Adaptive Layouts</h3>
+          <p>Fluid CSS Flexbox systems that reorganize content harmoniously across mobile, tablet, and widescreen viewports.</p>
+          <a href="#" class="feature-link">Learn more &rarr;</a>
+        </article>
+
+        <!-- Feature Box 2 -->
+        <article class="feature-box">
+          <div class="feature-icon">&#x26A1;</div>
+          <h3>Ultra Performance</h3>
+          <p>Lightweight semantic markup and native CSS layout primitives ensure zero runtime bloat and blistering load speeds.</p>
+          <a href="#" class="feature-link">Learn more &rarr;</a>
+        </article>
+
+        <!-- Feature Box 3 -->
+        <article class="feature-box">
+          <div class="feature-icon">&#x1F3A8;</div>
+          <h3>Interactive Aesthetics</h3>
+          <p>Delightful hardware-accelerated transitions and subtle micro-interactions that elevate user engagement.</p>
+          <a href="#" class="feature-link">Learn more &rarr;</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer centered at the bottom of the page -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-title">FlexCraft Design Systems</p>
+      <p class="footer-copyright">&copy; 2026 Responsive Web Design Assignment 9 | Q2: Responsive Web Design Layout</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> &bull; 
+        <a href="#">Terms of Service</a> &bull; 
+        <a href="#">Documentation</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

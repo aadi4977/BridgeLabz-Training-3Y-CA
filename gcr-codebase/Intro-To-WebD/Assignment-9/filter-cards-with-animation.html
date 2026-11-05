@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q5 - Filter Cards with Animation</title>
+  <link rel="stylesheet" href="filter-cards-with-animation.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <h1>Profile Showcase: Filters &amp; Keyframes</h1>
+      <p>Demonstrating CSS keyframe page-load fade-in, image filters, and lift hover transitions</p>
+      <nav class="nav">
+        <a href="index.html" class="nav-button">&larr; Assignment Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="team-section" aria-label="Team Profiles">
+      <div class="section-title">
+        <h2>Engineering Leadership</h2>
+        <p>Hover over any card to remove the vintage photographic filter and trigger the lift interaction.</p>
+      </div>
+
+      <!-- Profile Cards Flexbox Container -->
+      <div class="cards-container">
+        <!-- Profile Card 1: Grayscale Filter -->
+        <article class="profile-card">
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" 
+                 alt="Portrait of Sarah Lin" 
+                 class="profile-img filter-grayscale">
+            <span class="filter-badge">Grayscale</span>
+          </div>
+          <div class="card-body">
+            <h3 class="member-name">Sarah Lin</h3>
+            <span class="member-role">Principal Systems Architect</span>
+            <p class="member-bio">Leading distributed cloud infrastructure and high-performance WebAssembly initiatives.</p>
+            <div class="social-tags">
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Rust</span>
+              <span class="tag">System Design</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Profile Card 2: Sepia Filter -->
+        <article class="profile-card">
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" 
+                 alt="Portrait of Marcus Vance" 
+                 class="profile-img filter-sepia">
+            <span class="filter-badge">Sepia</span>
+          </div>
+          <div class="card-body">
+            <h3 class="member-name">Marcus Vance</h3>
+            <span class="member-role">UI/UX Design Director</span>
+            <p class="member-bio">Crafting human-centric design tokens, fluid typography systems, and accessible interfaces.</p>
+            <div class="social-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">CSS Grid</span>
+              <span class="tag">Accessibility</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Profile Card 3: Grayscale with High Contrast -->
+        <article class="profile-card">
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" 
+                 alt="Portrait of Elena Rostova" 
+                 class="profile-img filter-grayscale">
+            <span class="filter-badge">Grayscale</span>
+          </div>
+          <div class="card-body">
+            <h3 class="member-name">Elena Rostova</h3>
+            <span class="member-role">Frontend Engineering Lead</span>
+            <p class="member-bio">Passionate about cutting-edge CSS architecture, responsive performance, and modern web standards.</p>
+            <div class="social-tags">
+              <span class="tag">Modern CSS</span>
+              <span class="tag">Core Web Vitals</span>
+              <span class="tag">Architecture</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q5: Filter Cards with Animation</p>
+  </footer>
+</body>
+</html>

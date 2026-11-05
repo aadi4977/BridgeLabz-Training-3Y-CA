@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q3 - Responsive Cards with Media Queries</title>
+  <link rel="stylesheet" href="responsive-cards-with-media-queries.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <h1>Responsive Multi-Breakpoint Cards</h1>
+      <p>Demonstrating responsive card layouts using Flexbox and CSS Media Queries at 900px and 600px.</p>
+      <nav class="navigation">
+        <a href="index.html" class="nav-button">&larr; Assignment Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    <section class="cards-section" aria-label="Course Track Cards">
+      <div class="breakpoint-indicator">
+        <span class="indicator-badge desktop-badge">Desktop: 4 Columns (&gt; 900px)</span>
+        <span class="indicator-badge tablet-badge">Tablet: 2 Columns (&le; 900px)</span>
+        <span class="indicator-badge mobile-badge">Mobile: 1 Column (&le; 600px)</span>
+      </div>
+
+      <!-- 4 Cards arranged in a row using Flexbox -->
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <article class="info-card">
+          <div class="card-badge">Module 01</div>
+          <h2 class="card-title">Frontend Foundations</h2>
+          <p class="card-desc">Master semantic HTML5 tags, document structures, accessibility principles, and WCAG compliance.</p>
+          <ul class="card-list">
+            <li>Semantic HTML5</li>
+            <li>ARIA Attributes</li>
+            <li>Document Hierarchy</li>
+          </ul>
+          <div class="card-footer">
+            <span class="meta-tag">6 Weeks</span>
+            <a href="#" class="card-action">Explore &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="info-card">
+          <div class="card-badge">Module 02</div>
+          <h2 class="card-title">Responsive Styling</h2>
+          <p class="card-desc">Deep-dive into Flexbox alignment, CSS Grid tracks, fluid units, and fine-tuned media queries.</p>
+          <ul class="card-list">
+            <li>CSS Flexbox &amp; Grid</li>
+            <li>Fluid Typography</li>
+            <li>Mobile-First Queries</li>
+          </ul>
+          <div class="card-footer">
+            <span class="meta-tag">5 Weeks</span>
+            <a href="#" class="card-action">Explore &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="info-card">
+          <div class="card-badge">Module 03</div>
+          <h2 class="card-title">Visual FX &amp; Filters</h2>
+          <p class="card-desc">Implement hardware-accelerated transitions, creative CSS filters, and smooth keyframe animations.</p>
+          <ul class="card-list">
+            <li>CSS Filter Primitives</li>
+            <li>Cubic-Bezier Curves</li>
+            <li>Keyframe Choreography</li>
+          </ul>
+          <div class="card-footer">
+            <span class="meta-tag">4 Weeks</span>
+            <a href="#" class="card-action">Explore &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="info-card">
+          <div class="card-badge">Module 04</div>
+          <h2 class="card-title">Modern Design Systems</h2>
+          <p class="card-desc">Build maintainable component architectures, design tokens, responsive cards, and clean dashboards.</p>
+          <ul class="card-list">
+            <li>CSS Custom Properties</li>
+            <li>Scalable Spacing Scales</li>
+            <li>Component Isolation</li>
+          </ul>
+          <div class="card-footer">
+            <span class="meta-tag">6 Weeks</span>
+            <a href="#" class="card-action">Explore &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q3: Responsive Cards with Media Queries</p>
+  </footer>
+</body>
+</html>

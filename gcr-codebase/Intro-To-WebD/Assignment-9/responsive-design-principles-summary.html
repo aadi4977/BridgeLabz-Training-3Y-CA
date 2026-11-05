@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q9 - Responsive Design Principles Summary</title>
+  <link rel="stylesheet" href="responsive-design-principles-summary.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <h1>Core Principles of Responsive Design</h1>
+      <p>Visual summary of the three foundational pillars powering responsive web architecture.</p>
+      <nav class="nav">
+        <a href="index.html" class="nav-button">&larr; Assignment Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Area -->
+  <main class="main-content">
+    <section class="principles-section" aria-label="Responsive Design Principles">
+      <div class="section-heading">
+        <h2>The Triad of Modern Responsive Engineering</h2>
+        <p>Hover over each card to experience dynamic gradient shifts and contrast adaptation.</p>
+      </div>
+
+      <!-- CSS Grid Layout (3 boxes) -->
+      <div class="principles-grid">
+        <!-- Box 1: Fluid Layouts -->
+        <article class="principle-box">
+          <div class="principle-number">01</div>
+          <h3 class="principle-title">Fluid Layouts</h3>
+          <p class="principle-definition">
+            Fluid layouts utilize relative proportions such as percentages, fractions (<code>fr</code>), and viewport units (<code>vw</code>, <code>vh</code>) rather than rigid pixel dimensions, allowing containers to scale continuously with the browser window.
+          </p>
+          <div class="code-wrapper">
+            <span class="code-header">CSS Example</span>
+            <pre><code>.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 90vw;
+  max-width: 1200px;
+}</code></pre>
+          </div>
+        </article>
+
+        <!-- Box 2: Flexible Media -->
+        <article class="principle-box">
+          <div class="principle-number">02</div>
+          <h3 class="principle-title">Flexible Media</h3>
+          <p class="principle-definition">
+            Flexible media ensures embedded assets like imagery, video streams, and vector canvases automatically scale within their parent bounding boxes without overflowing or distorting aspect ratios.
+          </p>
+          <div class="code-wrapper">
+            <span class="code-header">CSS Example</span>
+            <pre><code>img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}</code></pre>
+          </div>
+        </article>
+
+        <!-- Box 3: Breakpoints -->
+        <article class="principle-box">
+          <div class="principle-number">03</div>
+          <h3 class="principle-title">Breakpoints</h3>
+          <p class="principle-definition">
+            Breakpoints are strategic viewport thresholds defined via CSS Media Queries where structural layout shifts, typography scales, or component reordering occur to optimize ergonomics for target screen dimensions.
+          </p>
+          <div class="code-wrapper">
+            <span class="code-header">CSS Example</span>
+            <pre><code>@media (min-width: 768px) {
+  .sidebar {
+    display: block;
+    width: 260px;
+  }
+}</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q9: Responsive Design Principles Summary</p>
+  </footer>
+</body>
+</html>

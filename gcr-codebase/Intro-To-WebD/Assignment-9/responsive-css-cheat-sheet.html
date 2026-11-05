@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q6 - Responsive CSS Cheat Sheet</title>
+  <link rel="stylesheet" href="responsive-css-cheat-sheet.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="cheat-header">
+    <div class="header-inner">
+      <h1>Responsive CSS Quick Reference</h1>
+      <p>A comprehensive visual cheat sheet summarizing modern CSS layout, filter, media query, and typography mechanics.</p>
+      <nav class="nav-bar">
+        <a href="index.html" class="nav-btn">&larr; Assignment Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content with CSS Grid layout -->
+  <main class="main-content">
+    <section class="cheatsheet-section" aria-label="Responsive CSS Reference Cards">
+      <div class="section-intro">
+        <h2>Core Concepts at a Glance</h2>
+        <p>Interactive cards showcasing key rules, syntax, and production examples.</p>
+      </div>
+
+      <!-- CSS Grid Container (2-3 columns on large, stacked key-value rows on < 700px) -->
+      <div class="cheatsheet-grid">
+        <!-- Box 1: Filters -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">Visual FX</span>
+            <h3 class="box-key">CSS Filters</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">Applies graphical effects like blur, color shifts, brightness, and contrast directly to elements before rendering.</p>
+            <div class="code-example">
+              <code>filter: blur(5px) grayscale(80%);</code>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box 2: Media Queries -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">Responsiveness</span>
+            <h3 class="box-key">Media Queries</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">Enables conditional CSS rules based on device properties such as viewport width, height, resolution, or orientation.</p>
+            <div class="code-example">
+              <code>@media (max-width: 768px) { ... }</code>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box 3: Responsive Design -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">Layout</span>
+            <h3 class="box-key">Responsive Design</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">The practice of crafting flexible layouts, fluid proportions, and flexible media that dynamically fit any viewport seamlessly.</p>
+            <div class="code-example">
+              <code>display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</code>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box 4: Typography -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">Type Systems</span>
+            <h3 class="box-key">Fluid Typography</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">Scales text smoothly between minimum and maximum bounds proportional to the user viewport width using clamp functions.</p>
+            <div class="code-example">
+              <code>font-size: clamp(1rem, 2.5vw, 2rem);</code>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box 5: CSS Flexbox -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">One-Dimensional Layout</span>
+            <h3 class="box-key">CSS Flexbox</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">Distributes available space among items along a single axis (row or column) with robust alignment, wrapping, and distribution rules.</p>
+            <div class="code-example">
+              <code>display: flex; justify-content: space-between; gap: 1rem;</code>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box 6: Viewport Units -->
+        <article class="cheat-box">
+          <div class="box-header">
+            <span class="box-category">Units</span>
+            <h3 class="box-key">Relative Units</h3>
+          </div>
+          <div class="box-content">
+            <p class="box-value">Dynamic sizing units like <code>vw</code>, <code>vh</code>, <code>rem</code>, and <code>ch</code> that decouple styling from rigid, non-accessible fixed pixels.</p>
+            <div class="code-example">
+              <code>width: 90vw; padding: 2rem; max-width: 65ch;</code>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="cheat-footer">
+    <p>&copy; 2026 Responsive Web Design Assignment 9 | Q6: Responsive CSS Cheat Sheet</p>
+  </footer>
+</body>
+</html>

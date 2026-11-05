@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q7 - Combined Responsive Web Demo</title>
+  <link rel="stylesheet" href="combined-responsive-web-demo.css">
+</head>
+<body>
+  <!-- Header and Navigation using Flexbox -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon">&#x269B;</span>
+        <span class="brand-name">ResponsiveHub</span>
+      </div>
+      <nav class="main-nav" aria-label="Combined Demo Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-item back-link">&larr; Index</a></li>
+          <li><a href="#gallery" class="nav-item">Gallery</a></li>
+          <li><a href="#explanation" class="nav-item">Principles</a></li>
+          <li><a href="#cheatsheet" class="nav-item">Cheat Sheet</a></li>
+          <li><a href="#contact" class="nav-item cta-btn">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero-banner">
+    <div class="hero-inner">
+      <h1>All-In-One Responsive Experience</h1>
+      <p>Harmonizing Flexbox navigation, CSS Grid multi-section orchestration, image filter interactions, and fluid typography.</p>
+    </div>
+  </section>
+
+  <!-- Main Content using CSS Grid for the three sections -->
+  <main class="main-layout">
+    <div class="sections-grid">
+      <!-- Section 1: Image Gallery -->
+      <section class="demo-section section-gallery" id="gallery" aria-label="Image Gallery Preview">
+        <div class="section-badge">Section 01</div>
+        <h2>Interactive Gallery</h2>
+        <p class="section-desc">Responsive image tiles showing real-time CSS filter transformations on hover.</p>
+        
+        <div class="mini-gallery">
+          <figure class="gallery-card">
+            <div class="thumb-wrap filter-sepia">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" 
+                   alt="Mountain summit at sunset">
+            </div>
+            <figcaption>Summit Sunset (Sepia)</figcaption>
+          </figure>
+
+          <figure class="gallery-card">
+            <div class="thumb-wrap filter-grayscale">
+              <img src="https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=400&q=80" 
+                   alt="Misty pines">
+            </div>
+            <figcaption>Misty Pines (Grayscale)</figcaption>
+          </figure>
+
+          <figure class="gallery-card">
+            <div class="thumb-wrap filter-contrast">
+              <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=400&q=80" 
+                   alt="Canyon river">
+            </div>
+            <figcaption>Canyon River (Contrast)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Section 2: Text Explanation of Responsive Design -->
+      <section class="demo-section section-explanation" id="explanation" aria-label="Explanation of Responsive Design">
+        <div class="section-badge">Section 02</div>
+        <h2>Responsive Design Philosophy</h2>
+        <p class="section-desc">Understanding the core mechanics of modern viewport adaptability.</p>
+
+        <article class="explanation-article">
+          <h3>The Triad of Responsive Web Design</h3>
+          <p class="fluid-text">
+            Responsive Web Design is built on three cornerstone techniques: <strong>fluid grid systems</strong> that size elements proportionally, <strong>flexible media</strong> that scales within container constraints, and <strong>CSS media queries</strong> that dynamically shift typography and geometry based on target viewport boundaries.
+          </p>
+          <ul class="principles-checklist">
+            <li><strong>Intrinsically fluid:</strong> Mobile-first container calculations</li>
+            <li><strong>Hardware-accelerated:</strong> CSS transitions over script-driven animations</li>
+            <li><strong>Fluid typography:</strong> Dynamic scaling via the <code>clamp()</code> function</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Section 3: Cheat Sheet Preview -->
+      <section class="demo-section section-cheatsheet" id="cheatsheet" aria-label="Cheat Sheet Preview">
+        <div class="section-badge">Section 03</div>
+        <h2>Cheat Sheet Snapshot</h2>
+        <p class="section-desc">Quick lookup reference for the most essential responsive CSS rules.</p>
+
+        <div class="cheat-preview-list">
+          <div class="cheat-item">
+            <span class="cheat-title">CSS Grid Auto-Fit:</span>
+            <code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</code>
+          </div>
+          <div class="cheat-item">
+            <span class="cheat-title">Fluid Clamp:</span>
+            <code>font-size: clamp(1rem, 2.5vw, 2rem);</code>
+          </div>
+          <div class="cheat-item">
+            <span class="cheat-title">Flex Center:</span>
+            <code>display: flex; justify-content: center; align-items: center;</code>
+          </div>
+          <div class="cheat-item">
+            <span class="cheat-title">Smooth Transition:</span>
+            <code>transition: filter 0.3s ease, transform 0.3s ease;</code>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer with Contact Information -->
+  <footer class="app-footer" id="contact">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>ResponsiveHub Contact</h3>
+        <p>Email: <a href="mailto:support@responsivehub.dev">support@responsivehub.dev</a></p>
+        <p>GitHub: <a href="https://github.com/aadi4977" target="_blank" rel="noopener">github.com/aadi4977</a></p>
+        <p>Location: Bangalore / Global Remote</p>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2026 Responsive Web Design Assignment 9 | Q7: Combined Responsive Web Demo</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
