@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 7: Core DOM Manipulation Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* CSS Theme Variables (Supports Q4 Themes) */
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --danger: #ef4444;
+      --warning: #eab308;
+      --success: #10b981;
+    }
+
+    body.theme-light, body[data-theme="light"] {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+    }
+
+    body.theme-dark, body[data-theme="dark"] {
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --border-color: #374151;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+    }
+
+    body.theme-blue, body[data-theme="blue"] {
+      --bg-color: #0c1a30;
+      --card-bg: #172554;
+      --border-color: #1e40af;
+      --text-main: #eff6ff;
+      --text-muted: #93c5fd;
+      --accent: #60a5fa;
+      --accent-hover: #3b82f6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 30px 20px;
+      line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Navigation Tabs */
+    .tabs-wrapper {
+      overflow-x: auto;
+      margin-bottom: 25px;
+      padding-bottom: 6px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      min-width: max-content;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* Panels */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .standalone-badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-size: 12px;
+      padding: 4px 10px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .standalone-badge:hover {
+      text-decoration: underline;
+    }
+
+    /* Common Form Styles */
+    input[type="text"], input[type="email"], input[type="password"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #ffffff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: var(--border-color); color: var(--text-main); }
+    .btn-danger { background: var(--danger); color: #ffffff; }
+
+    /* Overview Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .overview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .overview-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .overview-card h3 {
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .overview-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="theme-dark" data-theme="dark">
+  <div class="container">
+    <header>
+      <h1>JavaScript Assignment 7: DOM Manipulation Suite</h1>
+      <p>Clean HTML5, CSS3, & Core ES6+ JavaScript | Tested across Node.js Console & Browser DOM</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-overview">Overview (All 9)</button>
+        <button class="tab-btn" data-tab="tab-q1">Q1: Product Manager</button>
+        <button class="tab-btn" data-tab="tab-q2">Q2: Char Counter</button>
+        <button class="tab-btn" data-tab="tab-q3">Q3: Multi-Step Form</button>
+        <button class="tab-btn" data-tab="tab-q4">Q4: Theme Switcher</button>
+        <button class="tab-btn" data-tab="tab-q5">Q5: Modal Gallery</button>
+        <button class="tab-btn" data-tab="tab-q6">Q6: Table Filter</button>
+        <button class="tab-btn" data-tab="tab-q7">Q7: Mouse Tracker</button>
+        <button class="tab-btn" data-tab="tab-q8">Q8: Custom Dropdown</button>
+        <button class="tab-btn" data-tab="tab-q9">Q9: Form Blocker</button>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: OVERVIEW -->
+    <!-- ===================================================================== -->
+    <div id="tab-overview" class="tab-panel active">
+      <div class="overview-grid">
+        <div class="overview-card" onclick="switchTab('tab-q1')">
+          <div>
+            <h3>1. Dynamic Product List Manager</h3>
+            <p>Add, edit, delete products using <strong>Event Delegation</strong> on parent <code>&lt;ul&gt;</code>, inline editing, and outside-click auto-save.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q2')">
+          <div>
+            <h3>2. Live Character Counter</h3>
+            <p>Tracks remaining characters (max 100). Turns <strong>yellow</strong> at 20 left, turns <strong>red</strong> at 0 and blocks typing using <code>preventDefault()</code>.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q3')">
+          <div>
+            <h3>3. Multi-Step Form with Next/Back</h3>
+            <p>3-step wizard with validation (Name, Email, Password). Advances only on valid input, allows going back, and presents final summary card.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q4')">
+          <div>
+            <h3>4. Theme Switcher via setAttribute</h3>
+            <p>Switches between Light, Dark, and Blue themes strictly using <code>setAttribute()</code> to modify <code>class</code> and <code>data-theme</code>.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q5')">
+          <div>
+            <h3>5. Image Gallery with Modal Preview</h3>
+            <p>6-image responsive grid with popup modal. Outside clicks close modal, while <code>event.stopPropagation()</code> protects inner modal clicks.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q6')">
+          <div>
+            <h3>6. Real-Time Table Filter</h3>
+            <p>Reactively filters student table on <code>input</code> event. Case-insensitive search across Name, Branch, and CGPA with "No results found" fallback.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q7')">
+          <div>
+            <h3>7. Mouse Path & Coordinates Logger</h3>
+            <p>Exact 400×400 px interactive box. Tracks live <code>clientX</code> and <code>clientY</code> on mousemove. Double-clicking drops permanent red dots.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q8')">
+          <div>
+            <h3>8. Custom Dropdown (No &lt;select&gt;)</h3>
+            <p>Built with core JS without <code>&lt;select&gt;</code> tags. Uses <strong>Capturing Phase</strong> (<code>useCapture: true</code>) to handle closing when clicking outside.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('tab-q9')">
+          <div>
+            <h3>9. Form Blocker with Live Errors</h3>
+            <p>Stops submission via <code>preventDefault()</code> on invalid input. Shows inline errors that automatically disappear as the user corrects their input.</p>
+          </div>
+          <button class="btn btn-primary">Open Interactive Demo →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 1 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q1" class="tab-panel">
+      <div class="card" style="max-width: 700px; margin: 0 auto;">
+        <a href="question1.html" target="_blank" class="standalone-badge">Open Standalone Q1 Page ↗</a>
+        <h2 class="card-title">Q1: Dynamic Product List Manager (Event Delegation)</h2>
+        <p class="card-desc">Features: Add item, inline text editing, event delegation on parent <code>&lt;ul&gt;</code>, and auto-save on outside click.</p>
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+          <input type="text" id="new-product-input" placeholder="Enter new product name..." />
+          <button class="btn btn-primary" id="add-product-btn" style="white-space: nowrap;">Add Product</button>
+        </div>
+
+        <ul id="product-list" style="list-style: none;"></ul>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 2 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q2" class="tab-panel">
+      <div class="card" style="max-width: 650px; margin: 0 auto;">
+        <a href="question2.html" target="_blank" class="standalone-badge">Open Standalone Q2 Page ↗</a>
+        <h2 class="card-title">Q2: Live Character Counter with Warning Behavior</h2>
+        <p class="card-desc">Max 100 characters. Turns yellow at 20 left, turns red at 0 and prevents further typing with <code>preventDefault()</code>.</p>
+
+        <textarea id="char-textarea" placeholder="Start typing here (limit 100 chars)..." style="height: 120px; margin-bottom: 12px;"></textarea>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div id="char-counter" style="font-size: 14px; font-weight: 600;">100 characters remaining (Max: 100)</div>
+          <div id="warning-badge" style="display: none; font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 4px;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="btn btn-secondary" id="reset-btn">Reset All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 3 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q3" class="tab-panel">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <a href="question3.html" target="_blank" class="standalone-badge">Open Standalone Q3 Page ↗</a>
+        <h2 class="card-title">Q3: Multi-Step Form with Next/Back & Validation</h2>
+        <p class="card-desc">Progressive 3-step wizard. Only moves to next step when input is valid. Shows summary card upon completion.</p>
+
+        <div id="step-indicator-text" style="background: rgba(0,0,0,0.2); padding: 10px 14px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 18px; font-size: 14px; font-weight: 600; color: var(--accent);">
+          Step 1 of 3: Personal Name
+        </div>
+
+        <div id="step-error-msg" style="display: none; color: #ef4444; font-size: 13px; margin-bottom: 14px; background: rgba(239, 68, 68, 0.1); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3);"></div>
+
+        <div id="step-1-container">
+          <label style="display: block; font-size: 14px; margin-bottom: 6px;">Full Name (min 2 chars):</label>
+          <input type="text" id="step-name-input" placeholder="e.g. Aaditya Gupta" />
+        </div>
+
+        <div id="step-2-container" style="display: none;">
+          <label style="display: block; font-size: 14px; margin-bottom: 6px;">Email Address:</label>
+          <input type="email" id="step-email-input" placeholder="e.g. user@example.com" />
+        </div>
+
+        <div id="step-3-container" style="display: none;">
+          <label style="display: block; font-size: 14px; margin-bottom: 6px;">Password (min 6 chars):</label>
+          <input type="password" id="step-password-input" placeholder="Enter password..." />
+        </div>
+
+        <div id="summary-container" style="display: none; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin-top: 10px;">
+          <h3 style="color: #34d399; margin-bottom: 10px; font-size: 16px;">🎉 Form Completed Successfully!</h3>
+          <p style="font-size: 14px; margin-bottom: 4px;"><strong>Name:</strong> <span id="sum-name"></span></p>
+          <p style="font-size: 14px; margin-bottom: 4px;"><strong>Email:</strong> <span id="sum-email"></span></p>
+          <p style="font-size: 14px; margin-bottom: 12px;"><strong>Password:</strong> <span id="sum-password"></span></p>
+          <button class="btn btn-secondary" id="btn-step-reset">Reset / Start Over</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+          <button class="btn btn-secondary" id="btn-step-back" style="display: none;">← Back</button>
+          <button class="btn btn-primary" id="btn-step-next">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 4 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q4" class="tab-panel">
+      <div class="card" style="max-width: 650px; margin: 0 auto;">
+        <a href="question4.html" target="_blank" class="standalone-badge">Open Standalone Q4 Page ↗</a>
+        <h2 class="card-title">Q4: Theme Switcher Using setAttribute()</h2>
+        <p class="card-desc">Clicking buttons adds a class to <code>&lt;body&gt;</code> and custom attribute <code>data-theme</code> strictly using <code>setAttribute()</code>.</p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+          <button class="btn" style="flex: 1; background: #f8fafc; color: #0f172a; border: 1px solid #cbd5e1;" data-set-theme="light">☀️ Light Theme</button>
+          <button class="btn" style="flex: 1; background: #111827; color: #f9fafb; border: 1px solid #374151;" data-set-theme="dark">🌙 Dark Theme</button>
+          <button class="btn" style="flex: 1; background: #1e3a8a; color: #eff6ff; border: 1px solid #3b82f6;" data-set-theme="blue">🌊 Blue Theme</button>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; border: 1px dashed var(--border-color); font-family: monospace; font-size: 13px;">
+          <p style="margin-bottom: 6px;">Active Theme: <strong id="current-theme-name" style="color: var(--accent);">DARK</strong></p>
+          <p style="margin-bottom: 6px;">body.getAttribute("class"): <span id="attr-class-display" style="color: var(--accent);">theme-dark</span></p>
+          <p>body.getAttribute("data-theme"): <span id="attr-data-display" style="color: var(--accent);">data-theme="dark"</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 5 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q5" class="tab-panel">
+      <div class="card" style="max-width: 950px; margin: 0 auto;">
+        <a href="question5.html" target="_blank" class="standalone-badge">Open Standalone Q5 Page ↗</a>
+        <h2 class="card-title">Q5: Image Gallery with Modal Preview</h2>
+        <p class="card-desc">Click any image card to open modal. Outside click closes modal; <code>event.stopPropagation()</code> stops inner clicks from closing.</p>
+
+        <div class="gallery-grid" id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;"></div>
+      </div>
+
+      <!-- Modal Backdrop -->
+      <div id="gallery-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;">
+        <div id="gallery-modal-content" style="background: #1e293b; border: 1px solid #475569; border-radius: 12px; max-width: 700px; width: 100%; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);">
+          <div style="background: #000; display: flex; justify-content: center;">
+            <img id="modal-img" src="" alt="Enlarged" style="max-width: 100%; max-height: 480px; object-fit: contain; display: block;" />
+          </div>
+          <div style="padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #334155;">
+            <span id="modal-title" style="font-weight: 600; font-size: 15px; color: #fff;">Preview</span>
+            <button class="btn btn-danger" id="modal-close-btn" style="padding: 6px 14px; font-size: 12px;">Close (Esc)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 6 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q6" class="tab-panel">
+      <div class="card" style="max-width: 800px; margin: 0 auto;">
+        <a href="question6.html" target="_blank" class="standalone-badge">Open Standalone Q6 Page ↗</a>
+        <h2 class="card-title">Q6: Real-Time Table Filter Using input Event</h2>
+        <p class="card-desc">Reactively filters on <code>input</code> event. Case-insensitive search across Name, Branch, and CGPA.</p>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px;">
+          <input type="text" id="student-search-input" placeholder="Type to filter by name, branch, or CGPA..." />
+          <span id="match-count-badge" style="white-space: nowrap; font-size: 13px; font-weight: 600; color: var(--accent);">Showing all</span>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+          <thead>
+            <tr style="background: rgba(0,0,0,0.25); border-bottom: 2px solid var(--border-color);">
+              <th style="padding: 10px 14px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">Name</th>
+              <th style="padding: 10px 14px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">Branch</th>
+              <th style="padding: 10px 14px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">CGPA</th>
+            </tr>
+          </thead>
+          <tbody id="students-tbody"></tbody>
+        </table>
+
+        <div id="no-results-message" style="display: none; text-align: center; padding: 24px; color: #ef4444; font-weight: 600; background: rgba(239, 68, 68, 0.08); border-radius: 8px; margin-top: 14px;">
+          🔍 No results found matching your search.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 7 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q7" class="tab-panel">
+      <div class="card" style="max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+        <a href="question7.html" target="_blank" class="standalone-badge">Open Standalone Q7 Page ↗</a>
+        <h2 class="card-title" style="text-align: center;">Q7: Mouse Coordinates & Dot Logger</h2>
+        <p class="card-desc" style="text-align: center;">Move mouse inside 400×400 box to see live <code>clientX</code>/<code>clientY</code>. Double-click inside to drop red dots.</p>
+
+        <!-- EXACT 400x400 BOX -->
+        <div id="tracking-box" style="width: 400px; height: 400px; background: #0f172a; border: 2px dashed var(--accent); border-radius: 8px; position: relative; overflow: hidden; cursor: crosshair; user-select: none; display: flex; align-items: center; justify-content: center;">
+          <div style="color: #64748b; font-size: 13px; text-align: center; pointer-events: none;">
+            Move mouse here<br /><strong>Double-click</strong> to drop a red dot
+          </div>
+        </div>
+
+        <div style="width: 400px; margin-top: 16px; background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 16px; font-family: monospace; font-size: 13px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="color: var(--text-muted);">clientX:</span>
+            <span id="coord-client-x" style="color: var(--accent); font-weight: bold;">0px</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="color: var(--text-muted);">clientY:</span>
+            <span id="coord-client-y" style="color: var(--accent); font-weight: bold;">0px</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">Box Offset (X, Y):</span>
+            <span id="coord-offset" style="color: var(--accent); font-weight: bold;">(0, 0)</span>
+          </div>
+        </div>
+
+        <div style="width: 400px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px;">
+          <span style="font-size: 13px;">Dots dropped: <strong id="dots-count" style="color: #ef4444;">0</strong></span>
+          <button class="btn btn-danger" id="clear-dots-btn" style="padding: 6px 14px; font-size: 12px;">Clear Dots</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 8 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q8" class="tab-panel">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <a href="question8.html" target="_blank" class="standalone-badge">Open Standalone Q8 Page ↗</a>
+        <h2 class="card-title">Q8: Custom Dropdown (No &lt;select&gt; Tag)</h2>
+        <p class="card-desc">Options toggle on button click. Uses the <strong>Capturing Phase</strong> (<code>useCapture: true</code>) to handle clicking outside.</p>
+
+        <div id="custom-dropdown" style="position: relative; width: 100%; margin-bottom: 20px;">
+          <button id="dropdown-toggle-btn" type="button" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.25); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>Select a Framework</span>
+            <span class="dropdown-chevron">▼</span>
+          </button>
+          <ul id="dropdown-menu" style="display: none; position: absolute; top: calc(100% + 6px); left: 0; width: 100%; background: #0f172a; border: 1px solid var(--border-color); border-radius: 8px; list-style: none; z-index: 100; max-height: 240px; overflow-y: auto;"></ul>
+        </div>
+
+        <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 16px; font-size: 13px;">
+          Selected: <strong id="selected-value-display" style="color: var(--accent);">None selected</strong><br />
+          Capturing mechanism: <code>document.addEventListener('click', handler, true)</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB: QUESTION 9 -->
+    <!-- ===================================================================== -->
+    <div id="tab-q9" class="tab-panel">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <a href="question9.html" target="_blank" class="standalone-badge">Open Standalone Q9 Page ↗</a>
+        <h2 class="card-title">Q9: Form Submit Blocker with Live Errors</h2>
+        <p class="card-desc">Stops submission using <code>preventDefault()</code>. Errors disappear automatically as the user types.</p>
+
+        <form id="reg-form" novalidate>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; margin-bottom: 6px;">Full Name (Required):</label>
+            <input type="text" id="reg-name" placeholder="e.g. Alex Morgan" />
+            <div id="error-name" style="display: none; color: #ef4444; font-size: 12px; margin-top: 4px;"></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; margin-bottom: 6px;">Email Address (Must contain @):</label>
+            <input type="email" id="reg-email" placeholder="e.g. alex@example.com" />
+            <div id="error-email" style="display: none; color: #ef4444; font-size: 12px; margin-top: 4px;"></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; margin-bottom: 6px;">Password (min 6 chars):</label>
+            <input type="password" id="reg-password" placeholder="At least 6 characters" />
+            <div id="error-password" style="display: none; color: #ef4444; font-size: 12px; margin-top: 4px;"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Form</button>
+        </form>
+
+        <div id="form-success-banner" style="display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts for All 9 Questions -->
+  <script src="question1.js"></script>
+  <script src="question2.js"></script>
+  <script src="question3.js"></script>
+  <script src="question4.js"></script>
+  <script src="question5.js"></script>
+  <script src="question6.js"></script>
+  <script src="question7.js"></script>
+  <script src="question8.js"></script>
+  <script src="question9.js"></script>
+
+  <!-- Tab Navigation Script -->
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+
+      const activePanel = document.getElementById(tabId);
+      if (activePanel) activePanel.classList.add("active");
+
+      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add("active");
+    }
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-tab");
+        switchTab(targetId);
+      });
+    });
+  </script>
+</body>
+</html>

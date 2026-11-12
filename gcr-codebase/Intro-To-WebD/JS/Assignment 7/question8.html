@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q8: Custom Dropdown (No select Tag) - Capturing Phase</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 580px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 26px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 22px;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+    p.desc {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* Custom Dropdown Container (NO SELECT TAG) */
+    .dropdown-container {
+      position: relative;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .dropdown-button {
+      width: 100%;
+      padding: 12px 16px;
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .dropdown-button:hover, .dropdown-button:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      list-style: none;
+      z-index: 100;
+      max-height: 240px;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .info-box {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .info-box strong { color: #38bdf8; }
+
+    .back-link {
+      margin-top: 24px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Question 8: Custom Dropdown</h1>
+    <p class="desc">
+      A fully custom dropdown component implemented without any <code>&lt;select&gt;</code> element.
+      Clicking outside utilizes the <strong>Event Capturing Phase</strong> (<code>addEventListener(..., true)</code>) to intercept clicks before bubbling.
+    </p>
+
+    <!-- Custom Dropdown Container -->
+    <div class="dropdown-container" id="custom-dropdown">
+      <button class="dropdown-button" id="dropdown-toggle-btn" type="button">
+        <span>Select a Framework</span>
+        <span class="dropdown-chevron">▼</span>
+      </button>
+
+      <ul class="dropdown-menu" id="dropdown-menu">
+        <!-- Rendered dynamically by question8.js -->
+      </ul>
+    </div>
+
+    <div class="info-box">
+      Selected Option: <strong id="selected-value-display">None selected</strong><br />
+      Capturing Mechanism: <code>document.addEventListener('click', handler, true)</code>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-link">← Back to Assignment 7 Dashboard</a>
+
+  <script src="question8.js"></script>
+</body>
+</html>

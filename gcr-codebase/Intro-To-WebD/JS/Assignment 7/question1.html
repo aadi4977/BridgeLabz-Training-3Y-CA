@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q1: Dynamic Product List Manager - Event Delegation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 650px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 22px;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+    p.desc {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-size: 14px;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #38bdf8;
+    }
+    button.btn-add {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button.btn-add:hover { background: #0369a1; }
+    ul#product-list {
+      list-style: none;
+      margin-top: 10px;
+    }
+    .back-link {
+      margin-top: 20px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Question 1: Dynamic Product List Manager</h1>
+    <p class="desc">
+      Demonstrates <strong>Event Delegation</strong> on the parent <code>&lt;ul&gt;</code> for edit/delete, inline editing, and <strong>auto-saving</strong> when clicking outside the edited item.
+    </p>
+
+    <div class="input-group">
+      <input type="text" id="new-product-input" placeholder="Enter product name (e.g. Smart Watch)..." />
+      <button class="btn-add" id="add-product-btn">Add Product</button>
+    </div>
+
+    <ul id="product-list">
+      <!-- Items dynamically populated via question1.js -->
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-link">← Back to Assignment 7 Dashboard</a>
+
+  <script src="question1.js"></script>
+</body>
+</html>
