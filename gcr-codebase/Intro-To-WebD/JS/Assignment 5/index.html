@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 5 - JS Functions & Prototypes</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --terminal-bg: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto 32px;
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .top-controls {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-global {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-global:hover {
+      background: #0369a1;
+    }
+
+    .btn-clear {
+      background: #334155;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-clear:hover {
+      background: #475569;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      background-color: #0369a1;
+      color: #e0f2fe;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    button.run-btn {
+      background-color: var(--primary);
+      color: #0f172a;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    button.run-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .terminal {
+      background-color: var(--terminal-bg);
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .terminal:empty::before {
+      content: "Console output will appear here...";
+      color: #475569;
+      font-style: italic;
+    }
+
+    .log-info { color: #38bdf8; }
+    .log-success { color: var(--accent-green); }
+    .log-warn { color: var(--accent-yellow); }
+    .log-err { color: #f87171; }
+
+    @media (max-width: 640px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Assignment 5: JavaScript Functions & Prototypes</h1>
+    <p class="subtitle">Core ES6+ Concepts: Callbacks, Higher-Order Functions, 'this' Binding, Closures, Prototypal Inheritance & ES6 Classes</p>
+    <div class="top-controls">
+      <button class="btn-global" onclick="runAllQuestions()">▶ Run All Questions</button>
+      <button class="btn-clear" onclick="clearAllTerminals()">Clear All Terminals</button>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Q1 -->
+    <div class="card" id="card-q1">
+      <div class="card-header">
+        <h2>Q1: Callback Flow Control</h2>
+        <span class="badge">Callbacks</span>
+      </div>
+      <p class="desc">Write <code>greetUser(name, callback)</code> that prints "Hello &lt;name&gt;" and runs <code>showEndMessage()</code> ("Welcome to the course!").</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ1()">▶ Run Q1</button>
+      </div>
+      <div class="terminal" id="term-q1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card" id="card-q2">
+      <div class="card-header">
+        <h2>Q2: Higher-Order Function (applyOperation)</h2>
+        <span class="badge">Higher-Order</span>
+      </div>
+      <p class="desc">Create <code>applyOperation(numbers, operation)</code> to double and square each number in [1, 2, 3, 4].</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ2()">▶ Run Q2</button>
+      </div>
+      <div class="terminal" id="term-q2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card" id="card-q3">
+      <div class="card-header">
+        <h2>Q3: 'this' Binding in Arrow vs Normal Functions</h2>
+        <span class="badge">this Binding</span>
+      </div>
+      <p class="desc">Create user with arrow method <code>showName</code>, explain why <code>this.name</code> is undefined, and fix it using a normal function.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ3()">▶ Run Q3</button>
+      </div>
+      <div class="terminal" id="term-q3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card" id="card-q4">
+      <div class="card-header">
+        <h2>Q4: Constructor & Prototype Sharing</h2>
+        <span class="badge">Prototypes</span>
+      </div>
+      <p class="desc">Create <code>Car(brand, model)</code> constructor with prototype method <code>getDetails()</code>. Demonstrate memory method sharing.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ4()">▶ Run Q4</button>
+      </div>
+      <div class="terminal" id="term-q4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card" id="card-q5">
+      <div class="card-header">
+        <h2>Q5: Prototypal Inheritance (Person &rarr; Student)</h2>
+        <span class="badge">Inheritance</span>
+      </div>
+      <p class="desc">Create <code>Person</code> and <code>Student</code> constructors. Implement inheritance using <code>Object.create</code> and demonstrate prototype chain.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ5()">▶ Run Q5</button>
+      </div>
+      <div class="terminal" id="term-q5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card" id="card-q6">
+      <div class="card-header">
+        <h2>Q6: Multi-Level Chain (Person &rarr; Faculty &rarr; Professor)</h2>
+        <span class="badge">Chain Traversal</span>
+      </div>
+      <p class="desc">Create 3-level prototype chain. Demonstrate how a Professor object accesses methods and properties up the chain.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ6()">▶ Run Q6</button>
+      </div>
+      <div class="terminal" id="term-q6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="card" id="card-q7">
+      <div class="card-header">
+        <h2>Q7: Closures (makeMultiplier)</h2>
+        <span class="badge">Closures</span>
+      </div>
+      <p class="desc">Write <code>makeMultiplier(multiplier)</code> returning an inner function. Demonstrate <code>triple(5) = 15</code> with deep closure explanation.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ7()">▶ Run Q7</button>
+      </div>
+      <div class="terminal" id="term-q7"></div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="card" id="card-q8">
+      <div class="card-header">
+        <h2>Q8: Custom Array.prototype.myMap()</h2>
+        <span class="badge">Polyfill</span>
+      </div>
+      <p class="desc">Implement custom <code>myMap()</code> on <code>Array.prototype</code> matching native <code>Array.prototype.map()</code> behavior.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ8()">▶ Run Q8</button>
+      </div>
+      <div class="terminal" id="term-q8"></div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card" id="card-q9">
+      <div class="card-header">
+        <h2>Q9: ES6 Classes (extends & super) vs Prototypes</h2>
+        <span class="badge">ES6 Classes</span>
+      </div>
+      <p class="desc">Rewrite Person &rarr; Student with ES6 <code>extends</code> & <code>super()</code>. Prove both approaches exhibit identical runtime behavior.</p>
+      <div class="controls">
+        <button class="run-btn" onclick="runQ9()">▶ Run Q9</button>
+      </div>
+      <div class="terminal" id="term-q9"></div>
+    </div>
+
+  </div>
+
+  <script>
+    function captureOutput(targetTermId, fn) {
+      const term = document.getElementById(targetTermId);
+      term.textContent = "";
+      const originalLog = console.log;
+      const originalError = console.error;
+      const originalWarn = console.warn;
+
+      const append = (msg) => {
+        term.textContent += msg + "\n";
+        term.scrollTop = term.scrollHeight;
+      };
+
+      console.log = (...args) => {
+        originalLog(...args);
+        append(args.map(a => (typeof a === "object" ? JSON.stringify(a) : a)).join(" "));
+      };
+
+      console.error = (...args) => {
+        originalError(...args);
+        append("[ERROR] " + args.map(a => (typeof a === "object" ? JSON.stringify(a) : a)).join(" "));
+      };
+
+      console.warn = (...args) => {
+        originalWarn(...args);
+        append("[WARN] " + args.map(a => (typeof a === "object" ? JSON.stringify(a) : a)).join(" "));
+      };
+
+      try {
+        fn();
+      } catch (err) {
+        console.error(err.message);
+      } finally {
+        console.log = originalLog;
+        console.error = originalError;
+        console.warn = originalWarn;
+      }
+    }
+
+    function runQ1() {
+      captureOutput("term-q1", () => {
+        function showEndMessage() {
+          console.log("Welcome to the course!");
+        }
+        function greetUser(name, callback) {
+          console.log("[Step 1] Executing greetUser()...");
+          const validName = (typeof name === "string" && name.trim().length > 0) ? name.trim() : "Guest";
+          console.log(`Hello ${validName}`);
+          console.log("[Step 2] Executing callback function...");
+          if (typeof callback !== "function") throw new TypeError("callback must be a function");
+          callback();
+          console.log("[Step 3] greetUser() completed successfully.");
+        }
+
+        console.log("--- Test Case 1: Named Callback ---");
+        greetUser("Aaditya", showEndMessage);
+
+        console.log("\n--- Test Case 2: Anonymous Callback ---");
+        greetUser("Alice", () => console.log("Your modules are now unlocked!"));
+      });
+    }
+
+    function runQ2() {
+      captureOutput("term-q2", () => {
+        function applyOperation(numbers, operation) {
+          if (!Array.isArray(numbers)) throw new TypeError("numbers must be array");
+          if (typeof operation !== "function") throw new TypeError("operation must be function");
+          const res = [];
+          for (let i = 0; i < numbers.length; i++) {
+            res.push(operation(numbers[i], i, numbers));
+          }
+          return res;
+        }
+        const double = n => n * 2;
+        const square = n => n * n;
+        const arr = [1, 2, 3, 4];
+
+        console.log("Original Array:  ", JSON.stringify(arr));
+        console.log("Doubled Array:   ", JSON.stringify(applyOperation(arr, double)));
+        console.log("Squared Array:   ", JSON.stringify(applyOperation(arr, square)));
+      });
+    }
+
+    function runQ3() {
+      captureOutput("term-q3", () => {
+        const buggyUser = {
+          name: "Aaditya",
+          showName: () => {
+            console.log("[Arrow Function] this.name:", this?.name);
+            return this?.name;
+          }
+        };
+        buggyUser.showName();
+
+        console.log("\nExplanation: Arrow functions lack their own 'this'. Object literals do NOT create a new scope. 'this' captures window/module scope where .name is undefined.");
+
+        const fixedUser = {
+          name: "Aaditya",
+          showName: function() {
+            console.log("[Fixed Normal Function] this.name:", this.name);
+          }
+        };
+        fixedUser.showName();
+      });
+    }
+
+    function runQ4() {
+      captureOutput("term-q4", () => {
+        function Car(brand, model) {
+          this.brand = brand;
+          this.model = model;
+        }
+        Car.prototype.getDetails = function() {
+          const info = `Brand: ${this.brand} | Model: ${this.model}`;
+          console.log(info);
+          return info;
+        };
+
+        const c1 = new Car("Porsche", "911 GT3");
+        const c2 = new Car("Tesla", "Model S");
+        c1.getDetails();
+        c2.getDetails();
+
+        console.log("\nMethod Sharing Check:");
+        console.log("c1.getDetails === c2.getDetails ->", c1.getDetails === c2.getDetails);
+        console.log("Shared via prototype saves heap memory!");
+      });
+    }
+
+    function runQ5() {
+      captureOutput("term-q5", () => {
+        function Person(name) { this.name = name; }
+        Person.prototype.printName = function() { console.log("Name:", this.name); };
+
+        function Student(name, branch) {
+          Person.call(this, name);
+          this.branch = branch;
+        }
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+        Student.prototype.printBranch = function() { console.log("Branch:", this.branch); };
+
+        const s1 = new Student("Aaditya Gupta", "Computer Science");
+        s1.printName();
+        s1.printBranch();
+
+        console.log("s1 instanceof Student:", s1 instanceof Student);
+        console.log("s1 instanceof Person :", s1 instanceof Person);
+      });
+    }
+
+    function runQ6() {
+      captureOutput("term-q6", () => {
+        function Person(name) { this.name = name; }
+        Person.prototype.getPersonInfo = function() { console.log("[Person] Name:", this.name); };
+
+        function Faculty(name, department) {
+          Person.call(this, name);
+          this.department = department;
+        }
+        Faculty.prototype = Object.create(Person.prototype);
+        Faculty.prototype.constructor = Faculty;
+        Faculty.prototype.getFacultyInfo = function() { console.log("[Faculty] Dept:", this.department); };
+
+        function Professor(name, department, researchArea) {
+          Faculty.call(this, name, department);
+          this.researchArea = researchArea;
+        }
+        Professor.prototype = Object.create(Faculty.prototype);
+        Professor.prototype.constructor = Professor;
+        Professor.prototype.getProfessorInfo = function() { console.log("[Professor] Research:", this.researchArea); };
+
+        const prof = new Professor("Dr. Alan Turing", "CS", "Artificial Intelligence");
+        prof.getProfessorInfo();
+        prof.getFacultyInfo();
+        prof.getPersonInfo();
+        console.log("All methods up the chain accessed successfully!");
+      });
+    }
+
+    function runQ7() {
+      captureOutput("term-q7", () => {
+        function makeMultiplier(multiplier) {
+          return function(number) {
+            return number * multiplier;
+          };
+        }
+        const triple = makeMultiplier(3);
+        console.log("triple(5) =>", triple(5)); // 15
+        const double = makeMultiplier(2);
+        console.log("double(10) =>", double(10)); // 20
+        console.log("\nClosure retains reference to multiplier in memory even after makeMultiplier exits.");
+      });
+    }
+
+    function runQ8() {
+      captureOutput("term-q8", () => {
+        if (!Array.prototype.myMap) {
+          Object.defineProperty(Array.prototype, "myMap", {
+            value: function(callback, thisArg) {
+              if (this == null) throw new TypeError("this is null or undefined");
+              if (typeof callback !== "function") throw new TypeError(callback + " is not a function");
+              const O = Object(this);
+              const len = O.length >>> 0;
+              const res = new Array(len);
+              for (let i = 0; i < len; i++) {
+                if (i in O) res[i] = callback.call(thisArg, O[i], i, O);
+              }
+              return res;
+            },
+            writable: true, configurable: true, enumerable: false
+          });
+        }
+
+        const input = [1, 2, 3];
+        const res = input.myMap(num => num * 2);
+        console.log("Input: ", JSON.stringify(input));
+        console.log("[1,2,3].myMap(num => num * 2) =>", JSON.stringify(res));
+      });
+    }
+
+    function runQ9() {
+      captureOutput("term-q9", () => {
+        class PersonClass {
+          constructor(name) { this.name = name; }
+          printName() { console.log("[Class] Name:", this.name); }
+        }
+        class StudentClass extends PersonClass {
+          constructor(name, branch) {
+            super(name);
+            this.branch = branch;
+          }
+          printBranch() { console.log("[Class] Branch:", this.branch); }
+        }
+
+        const std = new StudentClass("Aaditya Gupta", "Computer Science");
+        std.printName();
+        std.printBranch();
+        console.log("std instanceof StudentClass:", std instanceof StudentClass);
+        console.log("std instanceof PersonClass :", std instanceof PersonClass);
+        console.log("ES6 class extends and super() behave identically to prototype chain with cleaner syntax.");
+      });
+    }
+
+    function runAllQuestions() {
+      runQ1();
+      runQ2();
+      runQ3();
+      runQ4();
+      runQ5();
+      runQ6();
+      runQ7();
+      runQ8();
+      runQ9();
+    }
+
+    function clearAllTerminals() {
+      for (let i = 1; i <= 9; i++) {
+        const el = document.getElementById(`term-q${i}`);
+        if (el) el.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
