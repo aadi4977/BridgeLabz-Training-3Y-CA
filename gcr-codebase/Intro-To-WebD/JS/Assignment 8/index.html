@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 8: Object-Oriented Programming & Array Pipelines in JavaScript</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #151d2f;
+      --card-border: #24314c;
+      --primary: #60a5fa;
+      --primary-hover: #3b82f6;
+      --accent-purple: #c084fc;
+      --accent-green: #34d399;
+      --accent-red: #f87171;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --terminal-bg: #030712;
+      --terminal-border: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    header {
+      max-width: 1280px;
+      margin: 0 auto 32px;
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: #1e293b;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: #334155;
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-danger {
+      background: #991b1b;
+      border-color: #dc2626;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(580px, 1fr));
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      white-space: nowrap;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .terminal {
+      background: var(--terminal-bg);
+      border: 1px solid var(--terminal-border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      flex-grow: 1;
+      min-height: 160px;
+      max-height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .log-info { color: #38bdf8; }
+    .log-success { color: var(--accent-green); }
+    .log-warn { color: #fbbf24; }
+    .log-error { color: var(--accent-red); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Assignment 8: OOP & Functional Array Methods</h1>
+    <p class="subtitle">Classes, Constructors, Prototypes, Encapsulation, Polymorphism & Error Handling</p>
+    <div class="toolbar">
+      <button class="btn btn-primary" onclick="runAll()">🚀 Run All Questions</button>
+      <button class="btn btn-danger" onclick="clearAll()">🧹 Clear All Terminals</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Question 1 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q1. Student Result Processing</h2>
+        <span class="badge">reduce() + Classes</span>
+      </div>
+      <p class="card-desc">Calculates student marks average using <code>reduce()</code> and assigns letter grades (A/B/C/F).</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ1()">▶ Run Q1</button>
+        <button class="btn" onclick="clearLog('terminal-q1')">Clear</button>
+      </div>
+      <div id="terminal-q1" class="terminal">[Click 'Run Q1' to inspect student calculations]</div>
+    </article>
+
+    <!-- Question 2 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q2. Online Food Ordering</h2>
+        <span class="badge">map() + Error Handling</span>
+      </div>
+      <p class="card-desc">Processes food bills with <code>map()</code> and <code>reduce()</code>, throwing errors for invalid items via <code>try/catch</code>.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ2()">▶ Run Q2</button>
+        <button class="btn" onclick="clearLog('terminal-q2')">Clear</button>
+      </div>
+      <div id="terminal-q2" class="terminal">[Click 'Run Q2' to process orders and handle errors]</div>
+    </article>
+
+    <!-- Question 3 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q3. Product Discount System</h2>
+        <span class="badge">Constructor + Abstraction</span>
+      </div>
+      <p class="card-desc">Uses a constructor function & prototype method <code>applyDiscount()</code> to demonstrate OOP Abstraction.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ3()">▶ Run Q3</button>
+        <button class="btn" onclick="clearLog('terminal-q3')">Clear</button>
+      </div>
+      <div id="terminal-q3" class="terminal">[Click 'Run Q3' to view discount computation & abstraction]</div>
+    </article>
+
+    <!-- Question 4 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q4. Employee Inheritance</h2>
+        <span class="badge">Polymorphism & super()</span>
+      </div>
+      <p class="card-desc">Employee & Manager classes overriding <code>work()</code> to show dynamic runtime polymorphism.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ4()">▶ Run Q4</button>
+        <button class="btn" onclick="clearLog('terminal-q4')">Clear</button>
+      </div>
+      <div id="terminal-q4" class="terminal">[Click 'Run Q4' to view polymorphic method dispatch]</div>
+    </article>
+
+    <!-- Question 5 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q5. Ride-Sharing Application</h2>
+        <span class="badge">Inheritance & Validation</span>
+      </div>
+      <p class="card-desc">User, Driver and Trip classes with distance validation and robust <code>try/catch</code> error handling.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ5()">▶ Run Q5</button>
+        <button class="btn" onclick="clearLog('terminal-q5')">Clear</button>
+      </div>
+      <div id="terminal-q5" class="terminal">[Click 'Run Q5' to test valid and invalid trip fares]</div>
+    </article>
+
+    <!-- Question 6 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q6. E-Commerce Inventory System</h2>
+        <span class="badge">filter(), sort(), reduce()</span>
+      </div>
+      <p class="card-desc">Filters low stock, sorts by price, calculates asset valuation, and groups items by category.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ6()">▶ Run Q6</button>
+        <button class="btn" onclick="clearLog('terminal-q6')">Clear</button>
+      </div>
+      <div id="terminal-q6" class="terminal">[Click 'Run Q6' to run inventory array pipelines]</div>
+    </article>
+
+    <!-- Question 7 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q7. Banking Application</h2>
+        <span class="badge">Encapsulation (#balance)</span>
+      </div>
+      <p class="card-desc">BankAccount class with private <code>#balance</code>, deposits, overdraft protection, and error handling.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ7()">▶ Run Q7</button>
+        <button class="btn" onclick="clearLog('terminal-q7')">Clear</button>
+      </div>
+      <div id="terminal-q7" class="terminal">[Click 'Run Q7' to test deposits, overdrafts & private fields]</div>
+    </article>
+
+    <!-- Question 8 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q8. Movie Ticket Booking System</h2>
+        <span class="badge">Prototype Chain</span>
+      </div>
+      <p class="card-desc">MovieTicket & OnlineTicket with prototype chain delegation to <code>printTicket()</code>.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ8()">▶ Run Q8</button>
+        <button class="btn" onclick="clearLog('terminal-q8')">Clear</button>
+      </div>
+      <div id="terminal-q8" class="terminal">[Click 'Run Q8' to verify prototype chain resolution]</div>
+    </article>
+
+    <!-- Question 9 -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Q9. Fitness App Analytics</h2>
+        <span class="badge">Analytics Pipelines</span>
+      </div>
+      <p class="card-desc">FitnessAnalytics class computing active users, average calories, formatted summaries, and empty dataset checks.</p>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="executeQ9()">▶ Run Q9</button>
+        <button class="btn" onclick="clearLog('terminal-q9')">Clear</button>
+      </div>
+      <div id="terminal-q9" class="terminal">[Click 'Run Q9' to calculate fitness analytics metrics]</div>
+    </article>
+
+  </main>
+
+  <!-- Load Question Scripts -->
+  <script src="question1.js"></script>
+  <script src="question2.js"></script>
+  <script src="question3.js"></script>
+  <script src="question4.js"></script>
+  <script src="question5.js"></script>
+  <script src="question6.js"></script>
+  <script src="question7.js"></script>
+  <script src="question8.js"></script>
+  <script src="question9.js"></script>
+
+  <!-- Interactive Terminal Driver -->
+  <script>
+    function captureOutput(terminalId, callback) {
+      const term = document.getElementById(terminalId);
+      term.innerHTML = "";
+      const originalLog = console.log;
+      const originalError = console.error;
+      const originalTable = console.table;
+
+      console.log = (...args) => {
+        term.innerHTML += args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(" ") + "\n";
+        term.scrollTop = term.scrollHeight;
+        originalLog.apply(console, args);
+      };
+
+      console.error = (...args) => {
+        term.innerHTML += `[ERROR] ` + args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(" ") + "\n";
+        term.scrollTop = term.scrollHeight;
+        originalError.apply(console, args);
+      };
+
+      console.table = (data) => {
+        term.innerHTML += JSON.stringify(data, null, 2) + "\n";
+        term.scrollTop = term.scrollHeight;
+        originalTable.apply(console, [data]);
+      };
+
+      try {
+        callback();
+      } finally {
+        console.log = originalLog;
+        console.error = originalError;
+        console.table = originalTable;
+      }
+    }
+
+    function clearLog(id) {
+      document.getElementById(id).innerHTML = "[Ready]";
+    }
+
+    function clearAll() {
+      for (let i = 1; i <= 9; i++) {
+        clearLog(`terminal-q${i}`);
+      }
+    }
+
+    function executeQ1() {
+      captureOutput('terminal-q1', () => {
+        const s1 = new Student("Aarav Sharma", [95, 92, 88, 96, 91]);
+        const s2 = new Student("Diya Patel", [78, 82, 74, 80, 85]);
+        const s3 = new Student("Rohan Verma", [42, 55, 48, 60, 52]);
+        s1.displayResult();
+        s2.displayResult();
+        s3.displayResult();
+      });
+    }
+
+    function executeQ2() {
+      captureOutput('terminal-q2', () => {
+        placeOrder("Aaditya Gupta", ["Margherita Pizza", "Cold Coffee"]);
+        placeOrder("Vikram Singh", ["Veggie Burger", "Sushi Platter"]);
+      });
+    }
+
+    function executeQ3() {
+      captureOutput('terminal-q3', () => {
+        const p1 = new Product("MacBook Air", 99990);
+        const p2 = new Product("Sony Headphones", 29990);
+        console.log("MacBook with 15% discount: Rs.", p1.applyDiscount(15));
+        console.log("Headphones with 20% discount: Rs.", p2.applyDiscount(20));
+      });
+    }
+
+    function executeQ4() {
+      captureOutput('terminal-q4', () => {
+        const staff = [
+          new Employee("Vikram Aditya", "Software Development"),
+          new Manager("Rajesh Sharma", "Engineering", 12)
+        ];
+        staff.forEach(s => console.log(s.work()));
+      });
+    }
+
+    function executeQ5() {
+      captureOutput('terminal-q5', () => {
+        const t1 = new Trip("BKC", "Airport", 8.5);
+        processTripFare(t1);
+        const t2 = new Trip("Andheri", "Powai", -10);
+        processTripFare(t2);
+      });
+    }
+
+    function executeQ6() {
+      captureOutput('terminal-q6', () => {
+        console.log("Low Stock Items:", getLowStockProducts(inventory, 4));
+        console.log("Total Inventory Value: Rs.", calculateTotalInventoryValue(inventory));
+      });
+    }
+
+    function executeQ7() {
+      captureOutput('terminal-q7', () => {
+        const acct = new BankAccount("Aaditya Gupta", 10000);
+        acct.deposit(5000);
+        acct.withdraw(3000);
+        try {
+          acct.withdraw(20000);
+        } catch (e) {
+          console.error(e.message);
+        }
+      });
+    }
+
+    function executeQ8() {
+      captureOutput('terminal-q8', () => {
+        const ticket = new OnlineTicket("Interstellar IMAX", "H-14", 450, 50);
+        ticket.printTicket();
+      });
+    }
+
+    function executeQ9() {
+      captureOutput('terminal-q9', () => {
+        const analytics = new FitnessAnalytics(workoutData);
+        console.log("Active Users:", analytics.getActiveUsers());
+        console.log("Average Calories:", analytics.getAverageCalories(), "kcal");
+        analytics.getUserSummary().forEach(s => console.log(s));
+      });
+    }
+
+    function runAll() {
+      executeQ1();
+      executeQ2();
+      executeQ3();
+      executeQ4();
+      executeQ5();
+      executeQ6();
+      executeQ7();
+      executeQ8();
+      executeQ9();
+    }
+  </script>
+</body>
+</html>
